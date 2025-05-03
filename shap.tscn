@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://vx8vb55ymj4k"]
+[gd_scene load_steps=17 format=3 uid="uid://vx8vb55ymj4k"]
 
 [ext_resource type="Script" uid="uid://dvwrqsim4x1e4" path="res://shap.gd" id="1_6sc2g"]
 [ext_resource type="Texture2D" uid="uid://ldbfyg2e2qdi" path="res://assets/shapsheet.png" id="2_6sc2g"]
@@ -145,10 +145,6 @@ _data = {
 &"Walk": SubResource("Animation_bkorf")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sc2g"]
-radius = 6.0
-height = 14.5602
-
 [sub_resource type="Gradient" id="Gradient_6sc2g"]
 offsets = PackedFloat32Array(0, 0.731818, 1)
 colors = PackedColorArray(0.769941, 0.72023, 0.761521, 1, 0.961308, 0.952948, 0.959892, 1, 1, 1, 1, 0)
@@ -190,8 +186,20 @@ collision_bounce = 0.2
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6sc2g"]
 polygon = PackedVector2Array(-12, 7, 14, 7, 14, 10, -12, 10)
 
-[node name="Shap" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sc2g"]
+radius = 6.0
+height = 14.5602
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bkorf"]
+radius = 8.0
+height = 20.0
+
+[node name="Shap" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_6sc2g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(10, 10)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_6sc2g")
@@ -201,15 +209,6 @@ hframes = 5
 libraries = {
 &"": SubResource("AnimationLibrary_j6g3a")
 }
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_6sc2g")
-
-[node name="Camera2D" type="Camera2D" parent="Area2D"]
-zoom = Vector2(10, 10)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
@@ -235,8 +234,25 @@ one_shot = true
 [node name="DEATH" type="Timer" parent="State Durations"]
 wait_time = 2.5
 
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]
+[node name="ClickDetectorHitbox" type="Area2D" parent="."]
+rotation = 1.5708
+
+[node name="Hitbox" type="CollisionShape2D" parent="ClickDetectorHitbox"]
+shape = SubResource("CapsuleShape2D_6sc2g")
+
+[node name="PhysicsHitbox" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6sc2g")
+
+[node name="WallDetectorHitbox" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="WallDetectorHitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bkorf")
+
 [connection signal="timeout" from="State Durations/IDLE" to="." method="_on_idle_timeout"]
 [connection signal="timeout" from="State Durations/WALK" to="." method="_on_walk_timeout"]
 [connection signal="timeout" from="State Durations/DEATH" to="." method="_on_death_timeout"]
+[connection signal="mouse_entered" from="ClickDetectorHitbox" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ClickDetectorHitbox" to="." method="_on_mouse_exited"]
+[connection signal="body_entered" from="WallDetectorHitbox" to="." method="_on_hitbox_body_entered"]

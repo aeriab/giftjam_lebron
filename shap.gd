@@ -1,10 +1,8 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var anim = $Sprite/AnimationPlayer
 
 # Variables
-var velocity : Vector2
-
 var mouse_inside : bool
 
 # STATE STUFF
@@ -18,8 +16,8 @@ func _ready():
 	else:
 		set_state("WALK")
 
-func _process(delta: float):
-	pass
+func _physics_process(delta: float):
+	move_and_slide()
 
 func set_state(new_phase):
 	# Stops any existing timers in case state was set through action not via time out
@@ -42,7 +40,7 @@ func set_state(new_phase):
 	elif new_phase == "WALK":
 		# set state and variables
 		state = States.WALK
-		velocity = Vector2(randf_range(10,100),randf_range(10,100))
+		velocity = Vector2(randf_range(5,10)*[-1,1].pick_random(),randf_range(5,10)*[-1,1].pick_random())
 		
 		# handle animations
 		anim.play("Walk")
@@ -54,7 +52,7 @@ func set_state(new_phase):
 	elif new_phase == "FLEE":
 		# set state and variables
 		state = States.FLEE
-		velocity = Vector2(randf_range(10,100),randf_range(10,100))
+		velocity = Vector2(randf_range(10,20)*[-1,1].pick_random(),randf_range(10,20)*[-1,1].pick_random())
 		
 		# handle animations
 		anim.play("RESET")
@@ -101,3 +99,9 @@ func _on_walk_timeout():
 	set_state("IDLE")
 func _on_death_timeout():
 	queue_free()
+
+func _on_hitbox_body_entered(body: Node2D):
+	if body.name=="LBound" or body.name=="RBound":
+		velocity.x = -velocity.x
+	elif body.name=="BBound" or body.name=="TBound":
+		velocity.y = -velocity.y
