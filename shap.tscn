@@ -172,9 +172,12 @@ zoom = Vector2(10, 10)
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 24
+sub_emitter = NodePath("GPUParticles2D")
 one_shot = true
 explosiveness = 0.93
 process_material = SubResource("ParticleProcessMaterial_ar0bk")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="GPUParticles2D"]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2(-1, 0)
