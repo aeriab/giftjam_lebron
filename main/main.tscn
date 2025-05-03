@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbd5qse08rnon"]
+
+[ext_resource type="PackedScene" uid="uid://cdy6fef102nbh" path="res://plant_minigame.tscn" id="1_pjrb6"]
+[ext_resource type="PackedScene" uid="uid://dohj4615xds12" path="res://UI/ui.tscn" id="2_xwkvk"]
+[ext_resource type="Script" uid="uid://bbx7s75li7nm5" path="res://main/cursor_setter.gd" id="3_xwkvk"]
+
+[node name="Main" type="Node2D"]
+
+[node name="PlantMinigame" parent="." instance=ExtResource("1_pjrb6")]
+
+[node name="UI" parent="." instance=ExtResource("2_xwkvk")]
+
+[node name="CursorSetter" type="Node" parent="."]
+script = ExtResource("3_xwkvk")
