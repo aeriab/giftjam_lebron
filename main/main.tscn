@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbd5qse08rnon"]
+[gd_scene load_steps=7 format=3 uid="uid://cbd5qse08rnon"]
 
 [ext_resource type="Script" uid="uid://csoxy0k242tvl" path="res://main/camera_2d.gd" id="1_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://cdy6fef102nbh" path="res://plant_minigame.tscn" id="1_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://dohj4615xds12" path="res://UI/ui.tscn" id="2_xwkvk"]
 [ext_resource type="Script" uid="uid://bbx7s75li7nm5" path="res://main/cursor_setter.gd" id="3_xwkvk"]
 [ext_resource type="Texture2D" uid="uid://bv3l5syoqshv6" path="res://assets/Arrow.png" id="4_c651c"]
+[ext_resource type="PackedScene" uid="uid://bcfydsopsdlh7" path="res://sheep_minigame.tscn" id="4_kfbq2"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,7 +17,7 @@ script = ExtResource("1_3wy1v")
 
 [node name="PlantMinigame" parent="." instance=ExtResource("1_pjrb6")]
 
-[node name="PlantMinigame2" parent="." instance=ExtResource("1_pjrb6")]
+[node name="SheepMinigame" parent="." instance=ExtResource("4_kfbq2")]
 position = Vector2(272, 0)
 
 [node name="CursorSetter" type="Node" parent="."]
