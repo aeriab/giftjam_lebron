@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxxrcbbpsue6i"]
+
+[ext_resource type="Script" uid="uid://b8oqbufovlrft" path="res://flower/interactive_color_rect.gd" id="1_kp3kt"]
+[ext_resource type="Script" uid="uid://ba0y137q2mrdg" path="res://flower/flower_scene.gd" id="1_u2h0y"]
+
+[node name="FlowerScene" type="Node2D"]
+script = ExtResource("1_u2h0y")
+
+[node name="interactive_color_rect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(1, 1, 1, 0.278431)
+script = ExtResource("1_kp3kt")
+MAX_OPACITY = 0.5
+FADE_IN_SPEED = 9.0
+FADE_OUT_SPEED = 6.0
+COLOR_PLANTED = Color(0, 0.717647, 0.101961, 1)
+COLOR_BLANK = Color(1, 1, 1, 1)
+
+[connection signal="gui_input" from="interactive_color_rect" to="interactive_color_rect" method="_on_gui_input"]
+[connection signal="mouse_entered" from="interactive_color_rect" to="interactive_color_rect" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="interactive_color_rect" to="interactive_color_rect" method="_on_mouse_exited"]
