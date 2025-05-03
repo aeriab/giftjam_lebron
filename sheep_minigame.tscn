@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://bcfydsopsdlh7"]
+[gd_scene load_steps=10 format=4 uid="uid://bcfydsopsdlh7"]
 
 [ext_resource type="Texture2D" uid="uid://cu4ebcrn6uqan" path="res://assets/Dirt(1) (4).png" id="1_ggkot"]
+[ext_resource type="Script" uid="uid://d4nt6d6555o1" path="res://sheep_minigame.gd" id="1_snb7h"]
 [ext_resource type="PackedScene" uid="uid://vx8vb55ymj4k" path="res://shap.tscn" id="2_ggkot"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y7wem"]
@@ -50,6 +51,7 @@ distance = -56.0
 distance = -56.0
 
 [node name="SheepMinigame" type="Node2D"]
+script = ExtResource("1_snb7h")
 
 [node name="Dirt_TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-8, -8)
