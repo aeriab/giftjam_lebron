@@ -16,6 +16,14 @@ func _ready():
 	else:
 		set_state("WALK")
 
+func _process(delta:float):
+	if velocity.x < 0:
+		$Sprite.flip_h=true
+	elif velocity.x >0:
+		$Sprite.flip_h=false
+		
+		
+
 func _physics_process(delta: float):
 	move_and_slide()
 
