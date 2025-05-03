@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="GiftJam_Lebron"
+run/main_scene="uid://cdy6fef102nbh"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SignalManager="*res://signal_manager.gd"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
