@@ -113,3 +113,5 @@ func _on_hitbox_body_entered(body: Node2D):
 		velocity.x = -velocity.x
 	elif body.name=="BBound" or body.name=="TBound":
 		velocity.y = -velocity.y
+	elif body.name.contains("@CharacterBody2D"):
+		velocity = -velocity
