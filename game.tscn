@@ -5,6 +5,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fc0e3"]
 shader = ExtResource("1_e2o6t")
+shader_parameter/BRIGHTNESS = 0.5
+shader_parameter/TIME_SPEED = 1.5
 
 [node name="Game" type="Node2D"]
 
