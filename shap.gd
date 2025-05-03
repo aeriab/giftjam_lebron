@@ -20,6 +20,12 @@ func _process(delta: float):
 	print(state)
 
 func set_state(new_phase):
+	# Stops any existing timers in case state was set through action not via time out
+	$"State Durations/IDLE".stop()
+	$"State Durations/WALK".stop()
+	$"State Durations/FLEE".stop()
+	
+	# Sets new state
 	if new_phase == "IDLE":
 		state = States.IDLE
 		$"State Durations/IDLE".start()
