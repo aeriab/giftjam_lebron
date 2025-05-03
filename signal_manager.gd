@@ -1,3 +1,3 @@
 extends Node
 
-#signal hello
+signal sheep_killed()

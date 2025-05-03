@@ -15,9 +15,9 @@ func _ready():
 		set_state("WALK")
 
 func _process(delta: float):
-	if mouse_inside==true:
+	if mouse_inside==true and state!=States.DEATH:
 		set_state("FLEE")
-	#print(state)
+	print(state)
 
 func set_state(new_phase):
 	if new_phase == "IDLE":
@@ -31,6 +31,9 @@ func set_state(new_phase):
 		$"State Durations/FLEE".start()
 	elif new_phase == "DEATH":
 		state = States.DEATH
+		SignalManager.sheep_killed.emit()
+		mouse_inside = false # don't return to flee after death
+		$GPUParticles2D.emitting = true
 		$"State Durations/DEATH".start()
 	else: 
 		print("ERROR: oopsie you made a typo lmao")

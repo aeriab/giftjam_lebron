@@ -73,6 +73,7 @@ process_material = SubResource("ParticleProcessMaterial_ar0bk")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2(-1, 0)
 occluder = SubResource("OccluderPolygon2D_6sc2g")
+
 [node name="State Durations" type="Node2D" parent="."]
 
 [node name="IDLE" type="Timer" parent="State Durations"]
