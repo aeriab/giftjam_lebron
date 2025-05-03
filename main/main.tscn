@@ -56,7 +56,7 @@ gizmo_extents = 158.6
 z_index = 10
 script = ExtResource("6_4dugh")
 
-[node name="Sprite2D" type="Sprite2D" parent="BindCursor"]
+[node name="CustomCursor" type="Sprite2D" parent="BindCursor"]
 texture = ExtResource("6_kfbq2")
 
 [node name="scarefield" type="Area2D" parent="BindCursor"]
