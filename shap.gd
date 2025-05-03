@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var anim = $Sprite/AnimationPlayer
 
+# Variables
+var velocity : Vector2
 
 var mouse_inside : bool
 
@@ -26,26 +28,52 @@ func set_state(new_phase):
 	
 	# Sets new state
 	if new_phase == "IDLE":
+		# set state and variables
 		state = States.IDLE
+		velocity = Vector2(0,0)
+		
+		# handle animations
 		anim.play("Eating")
+		
+		# set duration of cycle and start timer
 		$"State Durations/IDLE".wait_time = randi_range(1,2)*3
 		$"State Durations/IDLE".start()
+		
 	elif new_phase == "WALK":
+		# set state and variables
 		state = States.WALK
+		velocity = Vector2(randf_range(10,100),randf_range(10,100))
+		
+		# handle animations
 		anim.play("Walk")
+		
+		# set duration of cycle and start timer
 		$"State Durations/WALK".wait_time = randi_range(1,3)*3
 		$"State Durations/WALK".start()
+		
 	elif new_phase == "FLEE":
+		# set state and variables
 		state = States.FLEE
+		velocity = Vector2(randf_range(10,100),randf_range(10,100))
+		
+		# handle animations
 		anim.play("RESET")
 		anim.play("Run")
+		
 	elif new_phase == "DEATH":
+		#set state and variables
 		state = States.DEATH
-		anim.play("RESET")
-		#self.modulate = "red"
-		SignalManager.sheep_killed.emit()
-		mouse_inside = false # don't return to flee after death
+		velocity = Vector2(0,0)
+		
+		# handle animations
+		anim.stop()
 		$GPUParticles2D.emitting = true
+		#self.modulate = "red"
+		
+		# emit signal that sheep was killed 
+		SignalManager.sheep_killed.emit()
+		
+		# start a timer before sheep despawns
 		$"State Durations/DEATH".start()
 	else: 
 		print("ERROR: oopsie you made a typo lmao")
@@ -54,10 +82,12 @@ func set_state(new_phase):
 # SEES WHETHER OR NOT MOUSE CURSOR IS INSIDE OF THE SHEEP
 func _on_mouse_entered():
 	mouse_inside = true
-	set_state("FLEE")
+	if state!=States.DEATH:
+		set_state("FLEE")
 func _on_mouse_exited():
 	mouse_inside = false
-	set_state("WALK")
+	if state!=States.DEATH:
+		set_state("WALK")
 
 # SEES MOUSE CLICKS TO ALLOW DEATH
 func _input(event):
