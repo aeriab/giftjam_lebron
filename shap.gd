@@ -67,6 +67,7 @@ func set_state(new_phase):
 		
 		# handle animations
 		anim.stop()
+		anim.play("Death")
 		$GPUParticles2D.emitting = true
 		#self.modulate = "red"
 		
