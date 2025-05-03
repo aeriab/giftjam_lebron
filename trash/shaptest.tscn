@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://lm1cca3ullt7"]
+
+[ext_resource type="PackedScene" uid="uid://vx8vb55ymj4k" path="res://shap.tscn" id="1_s1jhj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pdesh"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Shap" parent="." instance=ExtResource("1_s1jhj")]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Area2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, 16)
+shape = SubResource("WorldBoundaryShape2D_pdesh")

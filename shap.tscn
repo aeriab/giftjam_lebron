@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://vx8vb55ymj4k"]
+[gd_scene load_steps=10 format=3 uid="uid://vx8vb55ymj4k"]
 
 [ext_resource type="Script" uid="uid://dvwrqsim4x1e4" path="res://shap.gd" id="1_6sc2g"]
 [ext_resource type="Texture2D" uid="uid://bigwsddvm354d" path="res://assets/shap.png" id="1_ubdti"]
@@ -6,6 +6,47 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sc2g"]
 radius = 6.0
 height = 14.5602
+
+[sub_resource type="Gradient" id="Gradient_6sc2g"]
+offsets = PackedFloat32Array(0, 0.731818, 1)
+colors = PackedColorArray(0.769941, 0.72023, 0.761521, 1, 0.961308, 0.952948, 0.959892, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bkorf"]
+gradient = SubResource("Gradient_6sc2g")
+
+[sub_resource type="Gradient" id="Gradient_j6g3a"]
+offsets = PackedFloat32Array(0, 0.686364, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.594272, 0.0844654, 0.161606, 1, 0.596078, 0.0862745, 0.160784, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_htccg"]
+gradient = SubResource("Gradient_j6g3a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ar0bk"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+inherit_velocity_ratio = 0.422
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 71.84
+initial_velocity_max = 129.31
+angular_velocity_min = -388.97
+angular_velocity_max = 206.89
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 0.999978
+gravity = Vector3(0, 98, 0)
+scale_max = 3.87
+color = Color(0.922789, 3.24883e-06, 1.73271e-06, 1)
+color_ramp = SubResource("GradientTexture1D_htccg")
+color_initial_ramp = SubResource("GradientTexture1D_bkorf")
+hue_variation_min = -0.09
+hue_variation_max = -2.23517e-08
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.2
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6sc2g"]
+polygon = PackedVector2Array(-12, 7, 14, 7, 14, 10, -12, 10)
 
 [node name="Shap" type="Node2D"]
 script = ExtResource("1_6sc2g")
@@ -21,6 +62,17 @@ shape = SubResource("CapsuleShape2D_6sc2g")
 
 [node name="Camera2D" type="Camera2D" parent="Area2D"]
 zoom = Vector2(10, 10)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 0.93
+process_material = SubResource("ParticleProcessMaterial_ar0bk")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-1, 0)
+occluder = SubResource("OccluderPolygon2D_6sc2g")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]
