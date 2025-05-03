@@ -1,7 +1,107 @@
-[gd_scene load_steps=10 format=3 uid="uid://vx8vb55ymj4k"]
+[gd_scene load_steps=15 format=3 uid="uid://vx8vb55ymj4k"]
 
 [ext_resource type="Script" uid="uid://dvwrqsim4x1e4" path="res://shap.gd" id="1_6sc2g"]
-[ext_resource type="Texture2D" uid="uid://bigwsddvm354d" path="res://assets/shap.png" id="1_ubdti"]
+[ext_resource type="Texture2D" uid="uid://ldbfyg2e2qdi" path="res://assets/shapsheet.png" id="2_6sc2g"]
+
+[sub_resource type="Animation" id="Animation_bkorf"]
+resource_name = "Walk"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_6sc2g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j6g3a"]
+resource_name = "Run"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.217637, 6.49803),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_htccg"]
+resource_name = "Eating"
+length = 3.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 3, 4, 4, 4, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j6g3a"]
+_data = {
+&"Eating": SubResource("Animation_htccg"),
+&"RESET": SubResource("Animation_6sc2g"),
+&"Run": SubResource("Animation_j6g3a"),
+&"Walk": SubResource("Animation_bkorf")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sc2g"]
 radius = 6.0
@@ -52,7 +152,13 @@ polygon = PackedVector2Array(-12, 7, 14, 7, 14, 10, -12, 10)
 script = ExtResource("1_6sc2g")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_ubdti")
+texture = ExtResource("2_6sc2g")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_j6g3a")
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -77,12 +183,11 @@ occluder = SubResource("OccluderPolygon2D_6sc2g")
 [node name="State Durations" type="Node2D" parent="."]
 
 [node name="IDLE" type="Timer" parent="State Durations"]
+wait_time = 3.0
 one_shot = true
 
 [node name="WALK" type="Timer" parent="State Durations"]
-one_shot = true
-
-[node name="FLEE" type="Timer" parent="State Durations"]
+wait_time = 6.0
 one_shot = true
 
 [node name="DEATH" type="Timer" parent="State Durations"]
@@ -91,5 +196,4 @@ one_shot = true
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="State Durations/IDLE" to="." method="_on_idle_timeout"]
 [connection signal="timeout" from="State Durations/WALK" to="." method="_on_walk_timeout"]
-[connection signal="timeout" from="State Durations/FLEE" to="." method="_on_flee_timeout"]
 [connection signal="timeout" from="State Durations/DEATH" to="." method="_on_death_timeout"]
