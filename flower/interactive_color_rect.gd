@@ -28,7 +28,6 @@ func _process(delta):
 	current_color = current_color.lerp(target_color, FADE_IN_SPEED * delta)
 	
 	color = current_color
-	print(current_color)
 	color.a = current_opacity
 
 func _on_mouse_entered():
