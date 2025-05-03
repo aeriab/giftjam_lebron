@@ -8,6 +8,8 @@ shader = ExtResource("1_e2o6t")
 
 [node name="Game" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Testing_Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fc0e3")
 texture = ExtResource("2_feb5d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
