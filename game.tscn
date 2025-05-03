@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://kefkkxlhmrcw"]
+
+[ext_resource type="Shader" uid="uid://bcash3peiix4c" path="res://prototype_shader.gdshader" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://cheio3sim37h2" path="res://icon.svg" id="2_feb5d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fc0e3"]
+shader = ExtResource("1_e2o6t")
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fc0e3")
+texture = ExtResource("2_feb5d")
