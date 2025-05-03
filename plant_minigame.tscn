@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://cdy6fef102nbh"]
+[gd_scene load_steps=2 format=3 uid="uid://cdy6fef102nbh"]
+
+[sub_resource type="TileSet" id="TileSet_ucct5"]
 
 [node name="PlantMinigame" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_ucct5")
+
+[node name="Node2D" type="Node2D" parent="TileMapLayer"]
