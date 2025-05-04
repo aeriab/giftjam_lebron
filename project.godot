@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalManager="*res://signal_manager.gd"
-Global="*res://global.gd"
 
 [display]
 
