@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bkdv528g2cv2b"
-path="res://.godot/imported/untitled - Track 8.wav-8ecad99a4ed8480090927c2fa57d9bff.sample"
+path="res://.godot/imported/Die - Track 5.wav-0db34cdacd588c9f6d1e91dbccb842d2.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/untitled - Track 8.wav"
-dest_files=["res://.godot/imported/untitled - Track 8.wav-8ecad99a4ed8480090927c2fa57d9bff.sample"]
+source_file="res://Audio/sfx/dieSFX/Die - Track 5.wav"
+dest_files=["res://.godot/imported/Die - Track 5.wav-0db34cdacd588c9f6d1e91dbccb842d2.sample"]
 
 [params]
 

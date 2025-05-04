@@ -1,10 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://c62ajorn8mdqk"]
+[gd_scene load_steps=18 format=3 uid="uid://c62ajorn8mdqk"]
 
 [ext_resource type="Shader" uid="uid://kx8qfv78fnjh" path="res://flower/daybloom_scene.gdshader" id="1_w8eqt"]
 [ext_resource type="Texture2D" uid="uid://cu4ebcrn6uqan" path="res://assets/Dirt(1) (4).png" id="2_q1rdw"]
 [ext_resource type="Script" uid="uid://deee000wb7bbx" path="res://flower/daybloom_sprite.gd" id="3_tnepv"]
 [ext_resource type="Script" uid="uid://cd884767a0fjd" path="res://flower/selected_tile_indicator.gd" id="4_q1rdw"]
 [ext_resource type="Texture2D" uid="uid://kgqekyivkdxv" path="res://assets/SELECTEDTILE.png" id="4_tnepv"]
+[ext_resource type="AudioStream" uid="uid://dg2efa1meekfl" path="res://Audio/sfx/digSFX/Dig - Track 1.wav" id="6_pdt4w"]
+[ext_resource type="AudioStream" uid="uid://du2gcbkb00mk5" path="res://Audio/sfx/digSFX/Dig - Track 2.wav" id="7_vlm3n"]
+[ext_resource type="AudioStream" uid="uid://cpuc75l0p3rh0" path="res://Audio/sfx/digSFX/Dig - Track 3.wav" id="8_imc3s"]
+[ext_resource type="AudioStream" uid="uid://dwvrpeco02ka1" path="res://Audio/sfx/digSFX/Dig - Track 4.wav" id="9_1de2x"]
+[ext_resource type="AudioStream" uid="uid://dnj5vr20145y" path="res://Audio/sfx/digSFX/Dig - Track 5.wav" id="10_k7vwa"]
+[ext_resource type="AudioStream" uid="uid://dt7cms1gr4dj4" path="res://Audio/sfx/digSFX/Dig - Track 6.wav" id="11_524gf"]
+[ext_resource type="AudioStream" uid="uid://ctnws0lq1cbd2" path="res://Audio/sfx/digSFX/Dig - Track 7.wav" id="12_ght65"]
+[ext_resource type="AudioStream" uid="uid://cbe4tias207v1" path="res://Audio/sfx/digSFX/Dig - Track 8.wav" id="13_26x3e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsrw"]
 shader = ExtResource("1_w8eqt")
@@ -15,6 +23,17 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_q1rdw"]
 colors = PackedColorArray(0, 0.921569, 0, 0.513726, 1, 1, 1, 0.356863)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tnepv"]
+streams_count = 8
+stream_0/stream = ExtResource("6_pdt4w")
+stream_1/stream = ExtResource("7_vlm3n")
+stream_2/stream = ExtResource("8_imc3s")
+stream_3/stream = ExtResource("9_1de2x")
+stream_4/stream = ExtResource("10_k7vwa")
+stream_5/stream = ExtResource("11_524gf")
+stream_6/stream = ExtResource("12_ght65")
+stream_7/stream = ExtResource("13_26x3e")
 
 [node name="DaybloomScene" type="Node2D"]
 
@@ -62,6 +81,9 @@ angular_velocity_min = -500.0
 angular_velocity_max = 500.0
 scale_amount_curve = SubResource("Curve_w8eqt")
 color_ramp = SubResource("Gradient_q1rdw")
+
+[node name="digSFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_tnepv")
 
 [connection signal="gui_input" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_gui_input"]
 [connection signal="gui_input" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_gui_input"]

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dvwrqsim4x1e4" path="res://shap.gd" id="1_6sc2g"]
 [ext_resource type="Texture2D" uid="uid://ldbfyg2e2qdi" path="res://assets/shapsheet.png" id="2_6sc2g"]
-[ext_resource type="AudioStream" uid="uid://dbxik63jdm06y" path="res://Audio/sfx/untitled - Track 1.wav" id="3_ar0bk"]
-[ext_resource type="AudioStream" uid="uid://cjiysfbiq5txe" path="res://Audio/sfx/untitled - Track 6.wav" id="4_rrw2e"]
-[ext_resource type="AudioStream" uid="uid://bkdv528g2cv2b" path="res://Audio/sfx/untitled - Track 8.wav" id="5_k5wgf"]
-[ext_resource type="AudioStream" uid="uid://cdht6gp7cm2lm" path="res://Audio/sfx/untitled - Track 10.wav" id="6_myhmv"]
+[ext_resource type="AudioStream" uid="uid://dbxik63jdm06y" path="res://Audio/sfx/dieSFX/Die - Track 1.wav" id="3_ar0bk"]
+[ext_resource type="AudioStream" uid="uid://cjiysfbiq5txe" path="res://Audio/sfx/dieSFX/Die - Track 3.wav" id="4_rrw2e"]
+[ext_resource type="AudioStream" uid="uid://bkdv528g2cv2b" path="res://Audio/sfx/dieSFX/Die - Track 5.wav" id="5_k5wgf"]
+[ext_resource type="AudioStream" uid="uid://cdht6gp7cm2lm" path="res://Audio/sfx/dieSFX/Die - Track 6.wav" id="6_myhmv"]
 
 [sub_resource type="Animation" id="Animation_ar0bk"]
 resource_name = "Death"
