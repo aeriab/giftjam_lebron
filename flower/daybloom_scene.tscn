@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsrw"]
 shader = ExtResource("1_w8eqt")
-shader_parameter/cur_opacity = 2.84
+shader_parameter/cur_opacity = 0.245
 
 [node name="DaybloomScene" type="Node2D"]
 

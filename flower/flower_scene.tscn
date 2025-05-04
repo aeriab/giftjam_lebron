@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxxrcbbpsue6i"]
+[gd_scene load_steps=3 format=3 uid="uid://cxxrcbbpsue6i"]
 
 [ext_resource type="Script" uid="uid://b8oqbufovlrft" path="res://flower/interactive_color_rect.gd" id="1_kp3kt"]
-[ext_resource type="Script" uid="uid://ba0y137q2mrdg" path="res://flower/flower_scene.gd" id="1_u2h0y"]
 [ext_resource type="AudioStream" uid="uid://dkluv88wtla3o" path="res://Audio/gardening! Edit 1 Export 2.wav" id="3_dc3o2"]
 
 [node name="FlowerScene" type="Node2D"]
