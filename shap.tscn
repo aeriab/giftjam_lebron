@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://vx8vb55ymj4k"]
+[gd_scene load_steps=24 format=3 uid="uid://vx8vb55ymj4k"]
 
 [ext_resource type="Script" uid="uid://dvwrqsim4x1e4" path="res://shap.gd" id="1_6sc2g"]
 [ext_resource type="Texture2D" uid="uid://ldbfyg2e2qdi" path="res://assets/shapsheet.png" id="2_6sc2g"]
 [ext_resource type="AudioStream" uid="uid://dbxik63jdm06y" path="res://Audio/sfx/dieSFX/Die - Track 1.wav" id="3_ar0bk"]
+[ext_resource type="Script" uid="uid://dkceqg3otatdy" path="res://gpu_particles_2d.gd" id="3_rrw2e"]
 [ext_resource type="AudioStream" uid="uid://cjiysfbiq5txe" path="res://Audio/sfx/dieSFX/Die - Track 3.wav" id="4_rrw2e"]
 [ext_resource type="AudioStream" uid="uid://bkdv528g2cv2b" path="res://Audio/sfx/dieSFX/Die - Track 5.wav" id="5_k5wgf"]
 [ext_resource type="AudioStream" uid="uid://cdht6gp7cm2lm" path="res://Audio/sfx/dieSFX/Die - Track 6.wav" id="6_myhmv"]
@@ -183,9 +184,6 @@ color_ramp = SubResource("GradientTexture1D_rrw2e")
 color_initial_ramp = SubResource("GradientTexture1D_ar0bk")
 hue_variation_min = -0.09
 hue_variation_max = -2.23517e-08
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.2
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6sc2g"]
 polygon = PackedVector2Array(-12, 7, 14, 7, 14, 10, -12, 10)
@@ -231,6 +229,7 @@ amount = 24
 one_shot = true
 explosiveness = 0.93
 process_material = SubResource("ParticleProcessMaterial_ar0bk")
+script = ExtResource("3_rrw2e")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2(-1, 0)
