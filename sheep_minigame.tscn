@@ -104,3 +104,4 @@ position = Vector2(51, -51)
 stream = ExtResource("3_snb7h")
 autoplay = true
 max_distance = 200.0
+playback_type = 1

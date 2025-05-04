@@ -86,7 +86,7 @@ func plant_seed():
 	SignalManager.seed_used.emit()
 
 func harvest_plant():
-	cpu_particles_2d.emitting = true
+	#cpu_particles_2d.emitting = true
 	SignalManager.seed_gathered.emit()
 	SignalManager.seed_gathered.emit()
 	frame = 6
