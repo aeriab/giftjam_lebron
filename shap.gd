@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var anim = $Sprite/AnimationPlayer
+@onready var hitSFX = $Hit
 
 # Variables
 var mouse_inside : bool
@@ -68,6 +69,7 @@ func set_state(new_phase):
 		anim.play("Run")
 		
 	elif new_phase == "DEATH":
+		hitSFX.play()
 		#set state and variables
 		state = States.DEATH
 		velocity = Vector2(0,0)
