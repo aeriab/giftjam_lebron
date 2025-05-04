@@ -8,7 +8,7 @@ var mouse_inside : bool
 var adapt_vector : Vector2
 
 # STATE STUFF
-enum States {IDLE, WALK, FLEE, DEATH}
+enum States {IDLE, WALK, FLEE, POPULATE, DEATH}
 var state: States
 
 func _ready():
@@ -62,11 +62,34 @@ func set_state(new_phase):
 		
 	elif new_phase == "FLEE":
 		# set state and variables
+		# velocity is handled in physics processes
 		state = States.FLEE
 		
 		# handle animations
 		anim.play("RESET")
 		anim.play("Run")
+	
+	elif new_phase == "POPULATE":
+		# set state and variables
+		state = States.POPULATE
+		velocity = Vector2(0,0)
+		
+		# reduce seeds
+		SignalManager.seed_used.emit()
+		
+		# handle animations
+		anim.play("RESET")
+		
+		# wait
+		await get_tree().create_timer(1).timeout
+		
+		# tell minigame to populate sheep
+		SignalManager.populate_sheep.emit(position)
+		
+		# wait
+		await get_tree().create_timer(2).timeout
+		
+		set_state("WALK")
 		
 	elif new_phase == "DEATH":
 		hitSFX.play()
@@ -97,8 +120,12 @@ func _on_mouse_exited():
 
 # SEES MOUSE CLICKS TO ALLOW DEATH
 func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and mouse_inside and state!=States.DEATH:
-		set_state("DEATH")
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and mouse_inside:
+			if state!=States.DEATH:
+				set_state("DEATH")
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and mouse_inside:
+			if state!=States.DEATH and state!=States.POPULATE and Global.seed > 0:
+				set_state("POPULATE")
 
 func _on_idle_timeout():
 	set_state("WALK")
@@ -117,9 +144,9 @@ func _on_hitbox_body_entered(body: Node2D):
 
 
 func _on_hitbox_area_entered(area: Area2D):
-	if area.name=="scarefield" and state!=States.DEATH:
+	if area.name=="scarefield" and state!=States.DEATH and state!=States.POPULATE:
 		set_state("FLEE")
 
 func _on_hitbox_area_exited(area: Area2D):
-	if area.name=="scarefield" and state!=States.DEATH:
+	if area.name=="scarefield" and state!=States.DEATH and state!=States.POPULATE:
 		set_state("WALK")
