@@ -186,6 +186,9 @@ hue_variation_max = -2.23517e-08
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.2
+sub_emitter_mode = 1
+sub_emitter_frequency = 4.0
+sub_emitter_keep_velocity = true
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6sc2g"]
 polygon = PackedVector2Array(-12, 7, 14, 7, 14, 10, -12, 10)
@@ -230,9 +233,11 @@ emitting = false
 amount = 24
 one_shot = true
 explosiveness = 0.93
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 process_material = SubResource("ParticleProcessMaterial_ar0bk")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 position = Vector2(-1, 0)
 occluder = SubResource("OccluderPolygon2D_6sc2g")
 
