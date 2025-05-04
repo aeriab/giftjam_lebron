@@ -61,6 +61,7 @@ z_index = 10
 script = ExtResource("6_4dugh")
 
 [node name="CustomCursor" type="Sprite2D" parent="BindCursor"]
+visible = false
 texture = ExtResource("6_kfbq2")
 
 [node name="scarefield" type="Area2D" parent="BindCursor"]

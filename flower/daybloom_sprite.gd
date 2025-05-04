@@ -11,6 +11,14 @@ var target_opacity: float = 0.0
 
 var current_opacity: float = 0.0
 
+func _ready():
+	if not material is ShaderMaterial:
+		print("Material is missing or not a ShaderMaterial!")
+	elif not material.has_meta("cur_opacity"):
+		print("ShaderMaterial does not have the 'cur_opacity' parameter!")
+
+var time_ellapsed: float = 0.0
+
 func _process(delta):
 	if !planted_tile:
 		if being_hovered:
@@ -20,26 +28,14 @@ func _process(delta):
 	else:
 		current_opacity = lerpf(current_opacity,target_opacity,FADE_IN_SPEED * delta)
 	
-	#color.a = current_opacity
-
-func _on_mouse_entered():
-	if !planted_tile:
-		target_opacity = MAX_OPACITY
-	being_hovered = true
+	modulate.a = current_opacity
 
 
-func _on_mouse_exited():
-	if !planted_tile:
-		target_opacity = MIN_OPACITY
-	being_hovered = false
-
-
-func _on_gui_input(event):
+func _on_interactive_color_rect_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if !planted_tile:
 			target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
 			planted_tile = true
-			target_color = COLOR_PLANTED
 			SignalManager.blood_watered.emit()
 	
 	#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -47,3 +43,15 @@ func _on_gui_input(event):
 			#target_opacity = 0.0
 			#planted_tile = false
 			#target_color = COLOR_BLANK
+
+
+func _on_interactive_color_rect_mouse_entered():
+	if !planted_tile:
+		target_opacity = MAX_OPACITY
+	being_hovered = true
+
+
+func _on_interactive_color_rect_mouse_exited():
+	if !planted_tile:
+		target_opacity = MIN_OPACITY
+	being_hovered = false

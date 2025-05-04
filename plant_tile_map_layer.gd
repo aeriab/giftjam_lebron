@@ -3,6 +3,8 @@ extends TileMapLayer
 # Preload the scene you want to instantiate. Preloading is efficient.
 @onready var flower_instance: PackedScene = preload("res://flower/flower_scene.tscn")
 
+@onready var daybloom_instance: PackedScene = preload("res://flower/daybloom_scene.tscn")
+
 var flower_instances: Dictionary = {}
 
 func _ready():
@@ -16,7 +18,7 @@ func _ready():
 func spawn_scene_at_tile(tile_coords: Vector2i):
 	# Optional: You could even check if the tile_coords are valid for your map layer
 	var local_world_position: Vector2 = map_to_local(tile_coords)
-	var instance = flower_instance.instantiate()
+	var instance = daybloom_instance.instantiate()
 	instance.position = local_world_position
 	add_child(instance)
 	
