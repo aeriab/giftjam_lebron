@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxxrcbbpsue6i"]
+[gd_scene load_steps=2 format=3 uid="uid://cxxrcbbpsue6i"]
 
 [ext_resource type="Script" uid="uid://b8oqbufovlrft" path="res://flower/interactive_color_rect.gd" id="1_kp3kt"]
-[ext_resource type="AudioStream" uid="uid://dkluv88wtla3o" path="res://Audio/gardening! Edit 1 Export 2.wav" id="3_dc3o2"]
 
 [node name="FlowerScene" type="Node2D"]
 
@@ -17,9 +16,6 @@ FADE_IN_SPEED = 9.0
 FADE_OUT_SPEED = 6.0
 COLOR_PLANTED = Color(0.467368, 0.0530919, 0.0172624, 1)
 COLOR_BLANK = Color(1, 0.522561, 0.628769, 0.627451)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_dc3o2")
 
 [connection signal="gui_input" from="interactive_color_rect" to="interactive_color_rect" method="_on_gui_input"]
 [connection signal="mouse_entered" from="interactive_color_rect" to="interactive_color_rect" method="_on_mouse_entered"]
