@@ -70,9 +70,7 @@ func _on_interactive_color_rect_gui_input(event):
 		
 		if !planted_tile:
 			if Global.seed > 0:
-				target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
-				planted_tile = true
-				SignalManager.seed_used.emit()
+				plant_seed()
 			else:
 				target_color = NO_SEEDS_COLOR
 				
@@ -80,6 +78,11 @@ func _on_interactive_color_rect_gui_input(event):
 		if ready_to_harvest:
 			harvest_plant()
 		
+
+func plant_seed():
+	target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
+	planted_tile = true
+	SignalManager.seed_used.emit()
 
 func harvest_plant():
 	cpu_particles_2d.emitting = true
@@ -99,6 +102,9 @@ func harvest_plant():
 func _on_interactive_color_rect_mouse_entered():
 	if !planted_tile:
 		target_opacity = MAX_OPACITY
+		
+		if Input.is_action_pressed("left_click") && Global.seed > 0:
+			plant_seed()
 	being_hovered = true
 
 
