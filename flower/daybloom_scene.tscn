@@ -6,11 +6,14 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsrw"]
 shader = ExtResource("1_w8eqt")
-shader_parameter/cur_opacity = 0.245
+shader_parameter/cur_opacity = 1.0
 
 [node name="DaybloomScene" type="Node2D"]
 
 [node name="DaybloomSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_dwsrw")
 texture = ExtResource("2_q1rdw")
+hframes = 5
+vframes = 6
+frame = 6
 script = ExtResource("3_tnepv")

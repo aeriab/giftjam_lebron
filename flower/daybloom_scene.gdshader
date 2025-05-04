@@ -1,12 +1,11 @@
 shader_type canvas_item;
-//uniform float BRIGHTNESS = 0.5;
-//uniform float TIME_SPEED = 2.5;
-uniform float cur_opacity = 0.0;
+render_mode blend_mix;
+uniform float cur_opacity : hint_range(0.0, 1.0);
 
 void fragment() {
 	//float time_scaled = TIME * TIME_SPEED;
-	//float red   = BRIGHTNESS + (sin(time_scaled) + 1.0) / 2.0;
-	//float green = BRIGHTNESS + (sin(time_scaled + 2.0) + 1.0) / 2.0; // Phase shift for green
-	//float blue  = BRIGHTNESS + (sin(time_scaled + 4.0) + 1.0) / 2.0; // Phase shift for blue
-	COLOR.a = cur_opacity;
+
+	// Optional: If you want to combine with a texture:
+	 vec4 tex_color = texture(TEXTURE, UV); // Get texture color
+	 COLOR = vec4(1.0, 1.0, 1.0, cur_opacity) * tex_color; // Multiply color by texture, preserving texture alpha
 }
