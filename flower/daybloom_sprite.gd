@@ -8,6 +8,9 @@ extends Sprite2D
 @export var MIN_GROW_TIME: float
 @export var MAX_GROW_TIME: float
 
+@export var NORMAL_COLOR: Color
+@export var NO_SEEDS_COLOR: Color
+
 var planted_tile: bool = false
 var being_hovered: bool = false
 var target_opacity: float = 0.0
@@ -21,6 +24,9 @@ var plant_stage_index: int = 0
 var next_stage_times
 
 var ready_to_harvest: bool = false
+
+@onready var target_color: Color = NORMAL_COLOR
+@onready var current_color: Color = NORMAL_COLOR
 
 func _ready():
 	next_stage_times = []
@@ -45,6 +51,13 @@ func _process(delta):
 			plant_time_ellapsed = 0
 			frame += 1
 	
+	current_color = current_color.lerp(target_color, FADE_IN_SPEED * delta)
+	
+	if Global.color_distance(current_color, target_color) < 0.1:
+		target_color = NORMAL_COLOR
+	
+	modulate = current_color
+	
 	modulate.a = current_opacity
 
 
@@ -52,10 +65,13 @@ func _on_interactive_color_rect_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		
 		if !planted_tile:
-			target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
-			planted_tile = true
-			SignalManager.seed_used.emit()
-			#SignalManager.blood_watered.emit()
+			if Global.seed > 0:
+				target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
+				planted_tile = true
+				SignalManager.seed_used.emit()
+			else:
+				target_color = NO_SEEDS_COLOR
+				
 		
 		if ready_to_harvest:
 			harvest_plant()

@@ -1,9 +1,7 @@
 extends Control
 
-var blood = 0
 @onready var blood_meter = $Blood/BloodMeter
 
-var seed = 3
 @onready var seeds_number = $Seeds/SeedsNumber
 
 func _ready():
@@ -11,23 +9,24 @@ func _ready():
 	SignalManager.blood_watered.connect(minusBlood)
 	SignalManager.seed_gathered.connect(addSeed)
 	SignalManager.seed_used.connect(minusSeed)
-	blood_meter.text = str(blood)
+	blood_meter.text = str(int(Global.blood))
+	seeds_number.text = str(int(Global.seed))
 
 func addBlood():
-	blood += 1
-	blood_meter.text = str(blood)
+	Global.blood += 1
+	blood_meter.text = str(int(Global.blood))
 
 func minusBlood():
-	blood -=1
-	blood_meter.text = str(blood)
+	Global.blood -=1
+	blood_meter.text = str(int(Global.blood))
 
 func addSeed():
-	seed += 1
-	seeds_number.text = str(seed)
+	Global.seed += 1
+	seeds_number.text = str(int(Global.seed))
 
 func minusSeed():
-	seed -=1
-	seeds_number.text = str(seed)
+	Global.seed -=1
+	seeds_number.text = str(int(Global.seed))
 
 
 
