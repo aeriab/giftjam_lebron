@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://c62ajorn8mdqk"]
+
+[ext_resource type="Shader" uid="uid://kx8qfv78fnjh" path="res://flower/daybloom_scene.gdshader" id="1_w8eqt"]
+[ext_resource type="Texture2D" uid="uid://cu4ebcrn6uqan" path="res://assets/Dirt(1) (4).png" id="2_q1rdw"]
+[ext_resource type="Script" uid="uid://deee000wb7bbx" path="res://flower/daybloom_sprite.gd" id="3_tnepv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsrw"]
+shader = ExtResource("1_w8eqt")
+shader_parameter/cur_opacity = 2.84
+
+[node name="DaybloomScene" type="Node2D"]
+
+[node name="DaybloomSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dwsrw")
+texture = ExtResource("2_q1rdw")
+script = ExtResource("3_tnepv")
