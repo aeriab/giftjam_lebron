@@ -78,6 +78,8 @@ func _on_interactive_color_rect_gui_input(event):
 		
 
 func harvest_plant():
+	SignalManager.seed_gathered.emit()
+	SignalManager.seed_gathered.emit()
 	frame = 6
 	target_opacity = 0.0
 	planted_tile = false
