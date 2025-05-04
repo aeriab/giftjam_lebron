@@ -8,7 +8,7 @@ func _ready() -> void:
 		var new_shap = shap.instantiate()
 		new_shap.global_position.x = (randf_range($"Pen Markers/topleft".position.x,$"Pen Markers/topright".position.x))
 		new_shap.global_position.y = (randf_range($"Pen Markers/topleft".position.y,$"Pen Markers/bottomleft".position.y))
-		print(new_shap.global_position)
+		#print(new_shap.global_position)
 		$ShapHolder.add_child(new_shap)
 
 
