@@ -54,7 +54,8 @@ func _on_interactive_color_rect_gui_input(event):
 		if !planted_tile:
 			target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
 			planted_tile = true
-			SignalManager.blood_watered.emit()
+			SignalManager.seed_used.emit()
+			#SignalManager.blood_watered.emit()
 		
 		if ready_to_harvest:
 			harvest_plant()
