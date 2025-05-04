@@ -153,14 +153,14 @@ _data = {
 offsets = PackedFloat32Array(0, 0.731818, 1)
 colors = PackedColorArray(0.769941, 0.72023, 0.761521, 1, 0.961308, 0.952948, 0.959892, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bkorf"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ar0bk"]
 gradient = SubResource("Gradient_6sc2g")
 
 [sub_resource type="Gradient" id="Gradient_j6g3a"]
 offsets = PackedFloat32Array(0, 0.686364, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.594272, 0.0844654, 0.161606, 1, 0.596078, 0.0862745, 0.160784, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_htccg"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rrw2e"]
 gradient = SubResource("Gradient_j6g3a")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ar0bk"]
@@ -179,8 +179,8 @@ radial_velocity_max = 0.999978
 gravity = Vector3(0, 98, 0)
 scale_max = 3.87
 color = Color(0.922789, 3.24883e-06, 1.73271e-06, 1)
-color_ramp = SubResource("GradientTexture1D_htccg")
-color_initial_ramp = SubResource("GradientTexture1D_bkorf")
+color_ramp = SubResource("GradientTexture1D_rrw2e")
+color_initial_ramp = SubResource("GradientTexture1D_ar0bk")
 hue_variation_min = -0.09
 hue_variation_max = -2.23517e-08
 collision_mode = 1
@@ -267,7 +267,6 @@ shape = SubResource("CapsuleShape2D_bkorf")
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_rjq5e")
-bus = &"SFX"
 playback_type = 2
 
 [connection signal="timeout" from="State Durations/IDLE" to="." method="_on_idle_timeout"]

@@ -1,5 +1,9 @@
 extends Sprite2D
 
+
+@onready var cpu_particles_2d = $"../CPUParticles2D"
+
+
 @export var MAX_OPACITY: float
 @export var MIN_OPACITY: float
 @export var FADE_IN_SPEED: float
@@ -78,6 +82,9 @@ func _on_interactive_color_rect_gui_input(event):
 		
 
 func harvest_plant():
+	cpu_particles_2d.emitting = true
+	SignalManager.seed_gathered.emit()
+	SignalManager.seed_gathered.emit()
 	frame = 6
 	target_opacity = 0.0
 	planted_tile = false
