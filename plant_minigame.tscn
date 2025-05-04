@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bfmgcnb3uynld" path="res://plant_tile_map_layer.gd" id="2_y7wem"]
 [ext_resource type="AudioStream" uid="uid://byptqeu5r216y" path="res://Audio/GARDEN.wav" id="3_kmyxg"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y7wem"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmyxg"]
 texture = ExtResource("1_rvfsd")
 0:0/0 = 0
 1:0/0 = 0
@@ -36,7 +36,7 @@ texture = ExtResource("1_rvfsd")
 2:5/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_kmyxg"]
-sources/0 = SubResource("TileSetAtlasSource_y7wem")
+sources/0 = SubResource("TileSetAtlasSource_kmyxg")
 
 [node name="PlantMinigame" type="Node2D"]
 

@@ -97,7 +97,7 @@ func _on_mouse_exited():
 
 # SEES MOUSE CLICKS TO ALLOW DEATH
 func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and mouse_inside and state!=States.DEATH:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and mouse_inside and state!=States.DEATH:
 		set_state("DEATH")
 
 func _on_idle_timeout():
