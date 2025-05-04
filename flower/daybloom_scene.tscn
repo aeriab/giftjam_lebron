@@ -37,7 +37,7 @@ NO_SEEDS_COLOR = Color(1, 0.0470588, 0.105882, 1)
 material = SubResource("ShaderMaterial_dwsrw")
 texture = ExtResource("4_tnepv")
 script = ExtResource("4_q1rdw")
-MAX_OPACITY = 0.9
+MAX_OPACITY = 0.5
 FADE_IN_SPEED = 50.0
 FADE_OUT_SPEED = 50.0
 
