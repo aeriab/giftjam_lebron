@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c62ajorn8mdqk"]
+[gd_scene load_steps=7 format=3 uid="uid://c62ajorn8mdqk"]
 
 [ext_resource type="Shader" uid="uid://kx8qfv78fnjh" path="res://flower/daybloom_scene.gdshader" id="1_w8eqt"]
 [ext_resource type="Texture2D" uid="uid://cu4ebcrn6uqan" path="res://assets/Dirt(1) (4).png" id="2_q1rdw"]
@@ -6,6 +6,13 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsrw"]
 shader = ExtResource("1_w8eqt")
+
+[sub_resource type="Curve" id="Curve_w8eqt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.87641, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_q1rdw"]
+colors = PackedColorArray(0, 0.921569, 0, 0.513726, 1, 1, 1, 0.356863)
 
 [node name="DaybloomScene" type="Node2D"]
 
@@ -30,6 +37,21 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
 color = Color(1, 1, 1, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 0.9
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 30.0
+initial_velocity_max = 80.0
+angular_velocity_min = -500.0
+angular_velocity_max = 500.0
+scale_amount_curve = SubResource("Curve_w8eqt")
+color_ramp = SubResource("Gradient_q1rdw")
 
 [connection signal="gui_input" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_gui_input"]
 [connection signal="mouse_entered" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_mouse_entered"]
