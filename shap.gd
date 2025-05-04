@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 # Variables
 var mouse_inside : bool
+var adapt_vector : Vector2
 
 # STATE STUFF
 enum States {IDLE, WALK, FLEE, DEATH}
@@ -21,10 +22,11 @@ func _process(delta:float):
 		$Sprite.flip_h=true
 	elif velocity.x >0:
 		$Sprite.flip_h=false
-		
-		
 
 func _physics_process(delta: float):
+	if state==States.FLEE:
+		adapt_vector = (global_position - get_global_mouse_position())/abs(global_position - get_global_mouse_position())
+		velocity = Vector2(randf_range(10,20)*adapt_vector.x,randf_range(10,20)*adapt_vector.y)
 	move_and_slide()
 
 func set_state(new_phase):
@@ -60,7 +62,6 @@ func set_state(new_phase):
 	elif new_phase == "FLEE":
 		# set state and variables
 		state = States.FLEE
-		velocity = Vector2(randf_range(10,20)*[-1,1].pick_random(),randf_range(10,20)*[-1,1].pick_random())
 		
 		# handle animations
 		anim.play("RESET")
@@ -84,17 +85,13 @@ func set_state(new_phase):
 		$"State Durations/DEATH".start()
 	else: 
 		print("ERROR: oopsie you made a typo lmao")
-	print(state)
 
 # SEES WHETHER OR NOT MOUSE CURSOR IS INSIDE OF THE SHEEP
 func _on_mouse_entered():
 	mouse_inside = true
-	if state!=States.DEATH:
-		set_state("FLEE")
+	
 func _on_mouse_exited():
 	mouse_inside = false
-	if state!=States.DEATH:
-		set_state("WALK")
 
 # SEES MOUSE CLICKS TO ALLOW DEATH
 func _input(event):
@@ -115,3 +112,12 @@ func _on_hitbox_body_entered(body: Node2D):
 		velocity.y = -velocity.y
 	elif body.name.contains("@CharacterBody2D"):
 		velocity = -velocity
+
+
+func _on_hitbox_area_entered(area: Area2D):
+	if area.name=="scarefield" and state!=States.DEATH:
+		set_state("FLEE")
+
+func _on_hitbox_area_exited(area: Area2D):
+	if area.name=="scarefield" and state!=States.DEATH:
+		set_state("WALK")
