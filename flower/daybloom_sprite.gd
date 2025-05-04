@@ -105,6 +105,11 @@ func _on_interactive_color_rect_mouse_entered():
 		
 		if Input.is_action_pressed("left_click") && Global.seed > 0:
 			plant_seed()
+	
+	if planted_tile && ready_to_harvest:
+		if Input.is_action_pressed("left_click"):
+			harvest_plant()
+	
 	being_hovered = true
 
 
