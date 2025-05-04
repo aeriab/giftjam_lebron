@@ -6,7 +6,7 @@ extends Node2D
 func _ready() -> void:
 	for i in range(0,9):
 		var new_shap = shap.instantiate()
-		add_child(new_shap)
+		$ShapHolder.add_child(new_shap)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

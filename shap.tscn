@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://vx8vb55ymj4k"]
+[gd_scene load_steps=18 format=3 uid="uid://vx8vb55ymj4k"]
 
 [ext_resource type="Script" uid="uid://dvwrqsim4x1e4" path="res://shap.gd" id="1_6sc2g"]
 [ext_resource type="Texture2D" uid="uid://ldbfyg2e2qdi" path="res://assets/shapsheet.png" id="2_6sc2g"]
@@ -190,6 +190,10 @@ polygon = PackedVector2Array(-12, 7, 14, 7, 14, 10, -12, 10)
 radius = 6.0
 height = 14.5602
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j6g3a"]
+radius = 5.0
+height = 10.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bkorf"]
 radius = 8.0
 height = 20.0
@@ -242,7 +246,7 @@ shape = SubResource("CapsuleShape2D_6sc2g")
 
 [node name="PhysicsHitbox" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_6sc2g")
+shape = SubResource("CapsuleShape2D_j6g3a")
 
 [node name="WallDetectorHitbox" type="Area2D" parent="."]
 

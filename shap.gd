@@ -26,7 +26,7 @@ func _process(delta:float):
 func _physics_process(delta: float):
 	if state==States.FLEE:
 		adapt_vector = (global_position - get_global_mouse_position())/abs(global_position - get_global_mouse_position())
-		velocity = Vector2(randf_range(10,20)*adapt_vector.x,randf_range(10,20)*adapt_vector.y)
+		velocity = Vector2(randf_range(15,25)*adapt_vector.x,randf_range(15,25)*adapt_vector.y)
 	move_and_slide()
 
 func set_state(new_phase):

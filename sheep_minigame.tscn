@@ -83,4 +83,7 @@ shape = SubResource("WorldBoundaryShape2D_d8prp")
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_1soo8")
 
-[node name="Shap" parent="." instance=ExtResource("2_ggkot")]
+[node name="ShapHolder" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Shap" parent="ShapHolder" instance=ExtResource("2_ggkot")]
