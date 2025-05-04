@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://c62ajorn8mdqk"]
+[gd_scene load_steps=26 format=3 uid="uid://c62ajorn8mdqk"]
 
 [ext_resource type="Shader" uid="uid://kx8qfv78fnjh" path="res://flower/daybloom_scene.gdshader" id="1_w8eqt"]
 [ext_resource type="Texture2D" uid="uid://cu4ebcrn6uqan" path="res://assets/Dirt(1) (4).png" id="2_q1rdw"]
 [ext_resource type="Script" uid="uid://deee000wb7bbx" path="res://flower/daybloom_sprite.gd" id="3_tnepv"]
 [ext_resource type="Script" uid="uid://cd884767a0fjd" path="res://flower/selected_tile_indicator.gd" id="4_q1rdw"]
 [ext_resource type="Texture2D" uid="uid://kgqekyivkdxv" path="res://assets/SELECTEDTILE.png" id="4_tnepv"]
+[ext_resource type="Script" uid="uid://cdkj74j6us0yq" path="res://flower/blood.gd" id="4_vlm3n"]
 [ext_resource type="AudioStream" uid="uid://dg2efa1meekfl" path="res://Audio/sfx/digSFX/Dig - Track 1.wav" id="6_pdt4w"]
 [ext_resource type="AudioStream" uid="uid://du2gcbkb00mk5" path="res://Audio/sfx/digSFX/Dig - Track 2.wav" id="7_vlm3n"]
 [ext_resource type="AudioStream" uid="uid://cpuc75l0p3rh0" path="res://Audio/sfx/digSFX/Dig - Track 3.wav" id="8_imc3s"]
@@ -16,6 +17,16 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsrw"]
 shader = ExtResource("1_w8eqt")
+
+[sub_resource type="Gradient" id="Gradient_pdt4w"]
+offsets = PackedFloat32Array(0, 0.993506)
+colors = PackedColorArray(0.588235, 0.0196078, 0, 1, 0.589069, 0.0182677, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vlm3n"]
+gradient = SubResource("Gradient_pdt4w")
+width = 16
+height = 16
+fill_to = Vector2(1, 1)
 
 [sub_resource type="Curve" id="Curve_w8eqt"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.87641, 0.0, 0, 0]
@@ -35,9 +46,55 @@ stream_5/stream = ExtResource("11_524gf")
 stream_6/stream = ExtResource("12_ght65")
 stream_7/stream = ExtResource("13_26x3e")
 
+[sub_resource type="Gradient" id="Gradient_vlm3n"]
+offsets = PackedFloat32Array(0, 0.731818, 1)
+colors = PackedColorArray(0.769941, 0.72023, 0.761521, 1, 0.961308, 0.952948, 0.959892, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_imc3s"]
+gradient = SubResource("Gradient_vlm3n")
+
+[sub_resource type="Gradient" id="Gradient_1de2x"]
+offsets = PackedFloat32Array(0, 0.686364, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.594272, 0.0844654, 0.161606, 1, 0.596078, 0.0862745, 0.160784, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k7vwa"]
+gradient = SubResource("Gradient_1de2x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_524gf"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.71
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_max = 40.0
+angular_velocity_min = -388.97
+angular_velocity_max = 206.89
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 0.999978
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+color = Color(0.599057, 1.43189e-06, 4.33177e-07, 1)
+color_ramp = SubResource("GradientTexture1D_k7vwa")
+color_initial_ramp = SubResource("GradientTexture1D_imc3s")
+hue_variation_min = -0.09
+hue_variation_max = -2.23517e-08
+
 [node name="DaybloomScene" type="Node2D"]
 
+[node name="interactive_color_rect" type="ColorRect" parent="."]
+z_index = 1
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+color = Color(1, 1, 1, 0)
+
 [node name="DaybloomSprite" type="Sprite2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_dwsrw")
 texture = ExtResource("2_q1rdw")
 hframes = 5
@@ -52,20 +109,23 @@ MAX_GROW_TIME = 2.0
 NORMAL_COLOR = Color(1, 1, 1, 1)
 NO_SEEDS_COLOR = Color(1, 0.0470588, 0.105882, 1)
 
+[node name="blood" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dwsrw")
+texture = SubResource("GradientTexture2D_vlm3n")
+script = ExtResource("4_vlm3n")
+MAX_OPACITY = 1.0
+FADE_IN_SPEED = 1.0
+FADE_OUT_SPEED = 0.5
+
 [node name="mousoverSelect" type="Sprite2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_dwsrw")
 texture = ExtResource("4_tnepv")
 script = ExtResource("4_q1rdw")
 MAX_OPACITY = 0.5
 FADE_IN_SPEED = 50.0
 FADE_OUT_SPEED = 50.0
-
-[node name="interactive_color_rect" type="ColorRect" parent="."]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-color = Color(1, 1, 1, 0)
+emitEvententer = "water"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -87,9 +147,18 @@ stream = SubResource("AudioStreamRandomizer_tnepv")
 bus = &"SFX"
 playback_type = 2
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_524gf")
+
 [connection signal="gui_input" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_gui_input"]
 [connection signal="gui_input" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_gui_input"]
+[connection signal="gui_input" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_gui_input"]
 [connection signal="mouse_entered" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_mouse_entered"]
 [connection signal="mouse_entered" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_mouse_entered"]
+[connection signal="mouse_entered" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_mouse_entered"]
 [connection signal="mouse_exited" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_mouse_exited"]
 [connection signal="mouse_exited" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_mouse_exited"]
+[connection signal="mouse_exited" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_mouse_exited"]

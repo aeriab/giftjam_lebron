@@ -8,3 +8,5 @@ signal seed_gathered()
 signal cameraPanStart()
 signal cameraPanFinished()
 signal populate_sheep(coordinates : Vector2)
+
+signal mouseover(str)

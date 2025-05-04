@@ -6,8 +6,6 @@ extends Sprite2D
 @export var FADE_OUT_SPEED: float
 
 
-@export var emitEvententer := "dflt"
-@export var emitEventexit := "dflt"
 
 var being_hovered: bool = false
 var mouse_pressed: bool = false
@@ -20,9 +18,14 @@ func _ready():
 
 func _process(delta):
 	if being_hovered:
-		target_opacity = MAX_OPACITY
-		current_opacity = lerpf(current_opacity,target_opacity,FADE_IN_SPEED * delta)
+		if mouse_pressed:
+			target_opacity = MAX_OPACITY
+			$"../GPUParticles2D".emitting = true
+			current_opacity = lerpf(current_opacity,target_opacity,FADE_IN_SPEED * delta)
+		else:
+			$"../GPUParticles2D".emitting = false
 	else:
+		$"../GPUParticles2D".emitting = false
 		current_opacity = lerpf(current_opacity,target_opacity,FADE_OUT_SPEED * delta)
 	
 	
@@ -31,16 +34,24 @@ func _process(delta):
 
 
 func _on_interactive_color_rect_mouse_entered():
-	print("mouseentered")
-	SignalManager.mouseover.emit(emitEvententer)
 	being_hovered = true
 
 
 func _on_interactive_color_rect_mouse_exited():
-	SignalManager.mouseover.emit(emitEventexit)
 	target_opacity = MIN_OPACITY
 	being_hovered = false
 
 
+
+
 func _input(event: InputEvent) -> void:
-	pass
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		mouse_pressed = true
+		#print("aajehdjkfnj")
+	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
+		mouse_pressed = false
+		
+
+
+func _on_interactive_color_rect_gui_input(event: InputEvent) -> void:
+	pass # Replace with function body.

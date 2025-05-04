@@ -101,10 +101,11 @@ func harvest_plant():
 		next_stage_times.append(randf_range(MIN_GROW_TIME, MAX_GROW_TIME))
 
 func _on_interactive_color_rect_mouse_entered():
-	if !planted_tile:
+	if !planted_tile && Global.seed > 0:
+		
 		target_opacity = MAX_OPACITY
 		
-		if Input.is_action_pressed("left_click") && Global.seed > 0:
+		if Input.is_action_pressed("left_click"):
 			plant_seed()
 	
 	if planted_tile && ready_to_harvest:
