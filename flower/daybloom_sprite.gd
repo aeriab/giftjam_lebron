@@ -2,7 +2,7 @@ extends Sprite2D
 
 
 @onready var cpu_particles_2d = $"../CPUParticles2D"
-
+@onready var digSFX = $"../digSFX"
 
 @export var MAX_OPACITY: float
 @export var MIN_OPACITY: float
@@ -80,6 +80,7 @@ func _on_interactive_color_rect_gui_input(event):
 		
 
 func plant_seed():
+	digSFX.play()
 	target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
 	planted_tile = true
 	SignalManager.seed_used.emit()
