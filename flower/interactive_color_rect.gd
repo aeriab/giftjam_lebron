@@ -48,9 +48,10 @@ func _on_gui_input(event):
 			target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
 			planted_tile = true
 			target_color = COLOR_PLANTED
+			SignalManager.blood_watered.emit()
 	
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
-		if planted_tile:
-			target_opacity = 0.0
-			planted_tile = false
-			target_color = COLOR_BLANK
+	#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		#if planted_tile:
+			#target_opacity = 0.0
+			#planted_tile = false
+			#target_color = COLOR_BLANK
