@@ -267,7 +267,7 @@ shape = SubResource("CapsuleShape2D_bkorf")
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_rjq5e")
-playback_type = 1
+playback_type = 2
 
 [connection signal="timeout" from="State Durations/IDLE" to="." method="_on_idle_timeout"]
 [connection signal="timeout" from="State Durations/WALK" to="." method="_on_walk_timeout"]
