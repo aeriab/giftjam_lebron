@@ -84,6 +84,8 @@ color_ramp = SubResource("Gradient_q1rdw")
 
 [node name="digSFX" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_tnepv")
+bus = &"SFX"
+playback_type = 2
 
 [connection signal="gui_input" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_gui_input"]
 [connection signal="gui_input" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_gui_input"]
