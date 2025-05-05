@@ -31,7 +31,7 @@ func _process(delta):
 		evil_texture_button.texture_normal = EVIL_FACE
 	
 	if !Global.in_plant_scene && Global.sheep_left <= 1 && !ready_for_switch:
-		print("MAKING HERE HERERERER")
+		#print("MAKING HERE HERERERER")
 		evil_activity_label.text = "need more sheep"
 		evil_texture_button.texture_normal = CLICKED_EVIL_FACE
 	elif !Global.in_plant_scene && Global.sheep_left > 1 && !ready_for_switch:
