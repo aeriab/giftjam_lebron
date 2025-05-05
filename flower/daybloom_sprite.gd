@@ -64,6 +64,7 @@ func _process(delta):
 		plant_time_ellapsed += delta
 		if plant_stage_index >= next_stage_times.size():
 			ready_to_harvest = true
+			Global.any_seeds_ready = true
 			return
 		if plant_time_ellapsed > next_stage_times[plant_stage_index]:
 			plant_stage_index += 1

@@ -9,8 +9,17 @@ extends Control
 @export var GOOD_SHADOW_COLOR: Color
 @export var EVIL_SHADOW_COLOR: Color
 
+var ready_for_switch: bool = true
+
+func _process(delta):
+	if Global.seed < 1 && Global.in_plant_scene && ready_for_switch:
+		good_activity_label.text = "grow seeds"
+		if Global.any_seeds_ready:
+			good_activity_label.text = "harvest"
+			Global.any_seeds_ready = false
 
 func _ready():
+	SignalManager.cameraPanFinished.connect(switchActivityLabel)
 	
 	SignalManager.sheep_killed.connect(addBlood)
 	SignalManager.blood_watered.connect(minusBlood)
@@ -37,44 +46,58 @@ func minusSeed(num : int):
 	seeds_number.text = str(int(Global.seed))
 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _on_evil_button_toggled(toggled_on):
 	Global.evil_mode = toggled_on
 	SignalManager.song_change.emit()
 
 @onready var good_texture_button = $GoodTextureButton
 @onready var evil_texture_button = $EvilTextureButton
-@onready var activity_label = $ActivityLabel
+@onready var good_activity_label = $GoodActivityLabel
+@onready var evil_activity_label = $EvilActivityLabel
+
 
 func _on_good_texture_button_pressed():
 	Global.evil_mode = true
 	SignalManager.song_change.emit()
 	
 	if Global.in_plant_scene:
-		activity_label.text = "BLOOD WATER"
+		evil_activity_label.text = "BLOOD WATER"
 	else:
-		activity_label.text = "MURDER"
+		evil_activity_label.text = "MURDER"
+	evil_activity_label.visible = true
+	good_activity_label.visible = false
+	
 	good_texture_button.visible = false
 	evil_texture_button.visible = true
-	activity_label.modulate = EVIL_COLOR
-	#activity_label.add_font_override("font", custom_font)
-	#activity_label.get_font("font").shadow_color = EVIL_SHADOW_COLOR
-
 
 func _on_evil_texture_button_pressed():
 	Global.evil_mode = false
 	SignalManager.song_change.emit()
 	
 	if Global.in_plant_scene:
-		activity_label.text = "plant seeds"
+		good_activity_label.text = "plant seeds"
 	else:
-		activity_label.text = "feed sheep"
+		good_activity_label.text = "feed sheep"
+	good_activity_label.visible = true
+	evil_activity_label.visible = false
+	
 	good_texture_button.visible = true
 	evil_texture_button.visible = false
-	activity_label.modulate = GOOD_COLOR
-	#activity_label.add_font_override("font", custom_font)
-	#activity_label.get_font("font").font_shadow_color = GOOD_SHADOW_COLOR
+
+func switchActivityLabel():
+	
+	if Global.in_plant_scene:
+		ready_for_switch = true
+		evil_activity_label.text = "BLOOD WATER"
+	else:
+		ready_for_switch = false
+		evil_activity_label.text = "MURDER"
+	
+	if Global.in_plant_scene:
+		ready_for_switch = true
+		good_activity_label.text = "plant seeds"
+	else:
+		ready_for_switch = false
+		good_activity_label.text = "feed sheep"
+	
+	pass

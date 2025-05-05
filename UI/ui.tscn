@@ -64,9 +64,9 @@ texture = ExtResource("2_e6gg6")
 z_index = 1
 layout_mode = 0
 offset_left = -101.0
-offset_top = 38.0
+offset_top = 34.0
 offset_right = -37.0
-offset_bottom = 102.0
+offset_bottom = 98.0
 scale = Vector2(0.450726, 0.450726)
 texture_normal = ExtResource("4_hat8c")
 texture_pressed = ExtResource("5_3sbvi")
@@ -77,31 +77,50 @@ flip_h = true
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = -101.0
-offset_top = 10.0
-offset_right = -37.0
-offset_bottom = 74.0
+offset_left = 72.0
+offset_top = 35.0
+offset_right = 136.0
+offset_bottom = 99.0
 scale = Vector2(0.450726, 0.450726)
 texture_normal = ExtResource("5_nm1m0")
 texture_pressed = ExtResource("7_c7tqi")
 texture_hover = ExtResource("7_c7tqi")
-flip_h = true
 
-[node name="ActivityLabel" type="Label" parent="."]
+[node name="GoodActivityLabel" type="Label" parent="."]
 modulate = Color(0.760784, 1, 0.819608, 1)
 visibility_layer = 1023
 z_index = 1
 layout_mode = 0
 offset_left = -111.0
-offset_top = 32.0
+offset_top = 15.0
 offset_right = 1063.0
-offset_bottom = 583.0
+offset_bottom = 566.0
 scale = Vector2(0.0437522, 0.0437522)
 theme_override_constants/shadow_offset_x = 20
 theme_override_constants/shadow_offset_y = 20
 theme_override_font_sizes/font_size = 201
 text = "plant seeds"
 horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="EvilActivityLabel" type="Label" parent="."]
+visible = false
+modulate = Color(0.999966, 0.186059, 0.20766, 1)
+visibility_layer = 1023
+z_index = 1
+offset_left = 62.0
+offset_top = 16.0
+offset_right = 1236.0
+offset_bottom = 567.0
+scale = Vector2(0.0437522, 0.0437522)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 20
+theme_override_font_sizes/font_size = 201
+text = "BLOOD WATER"
+horizontal_alignment = 1
+vertical_alignment = 2
 autowrap_mode = 2
 
 [connection signal="pressed" from="GoodTextureButton" to="." method="_on_good_texture_button_pressed"]

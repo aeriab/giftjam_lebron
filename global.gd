@@ -3,6 +3,7 @@ extends Node
 var blood: int = 0
 var seed: int = 3
 var any_seeds_planted: bool = false
+var any_seeds_ready: bool = false
 
 var sheep_left: int = 9
 
