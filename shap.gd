@@ -130,12 +130,10 @@ func _input(event):
 				set_state("DEATH")
 			if !Global.evil_mode:
 				
-				if Global.seed > FEEDING_SEED_AMOUNT:
+				if Global.any_seeds_planted || Global.seed > FEEDING_SEED_AMOUNT:
 					SignalManager.seed_used.emit(FEEDING_SEED_AMOUNT)
 					Global.sheep_left += 1
 					SignalManager.populate_sheep.emit(self.global_position)
-					if Global.seed < 1:
-						Global.any_seeds_left = false
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and mouse_inside:
 		if state!=States.DEATH and state!=States.POPULATE and Global.seed > 0:
 			set_state("POPULATE")

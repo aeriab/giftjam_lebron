@@ -44,7 +44,7 @@ func _process(delta):
 		else:
 			current_opacity = lerpf(current_opacity,target_opacity,FADE_OUT_SPEED * delta)
 	else:
-		Global.any_seeds_left = true
+		Global.any_seeds_planted = true
 		current_opacity = lerpf(current_opacity,target_opacity,FADE_IN_SPEED * delta)
 		
 		plant_time_ellapsed += delta
@@ -82,14 +82,14 @@ func _on_interactive_color_rect_gui_input(event):
 		
 
 func plant_seed():
-	if Global.seed < 1:
-		Global.any_seeds_left = false
+	Global.any_seeds_planted = true
 	digSFX.play()
 	target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
 	planted_tile = true
 	SignalManager.seed_used.emit(1)
 
 func harvest_plant():
+	Global.any_seeds_planted = false
 	cpu_particles_2d.emitting = true
 	SignalManager.seed_gathered.emit(2)
 	frame = 6
