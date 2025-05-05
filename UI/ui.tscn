@@ -112,6 +112,7 @@ autowrap_mode = 2
 modulate = Color(0.999966, 0.186059, 0.20766, 1)
 visibility_layer = 1023
 z_index = 1
+layout_mode = 0
 offset_left = 62.0
 offset_top = 16.0
 offset_right = 1236.0
