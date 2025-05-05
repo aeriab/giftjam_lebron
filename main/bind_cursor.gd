@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		"water":
 			#position += 
 			sprite.texture = watercan
-			print("HIDE")
+			#print("HIDE")
 			#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		"murder":
 			sprite.texture = dagger
@@ -41,7 +41,7 @@ func _input(event):
 				"dflt":
 					pass
 				"water":
-					print("WATERING")
+					#print("WATERING")
 					anim.play("water")
 				"murder":
 					slashSFX.play()

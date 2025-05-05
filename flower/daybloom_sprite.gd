@@ -68,15 +68,16 @@ func _process(delta):
 func _on_interactive_color_rect_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		
-		if !planted_tile:
-			if Global.seed > 0:
-				plant_seed()
-			else:
-				target_color = NO_SEEDS_COLOR
-				
-		
-		if ready_to_harvest:
-			harvest_plant()
+		if !Global.evil_mode:
+			if !planted_tile:
+				if Global.seed > 0:
+					plant_seed()
+				else:
+					target_color = NO_SEEDS_COLOR
+					
+			
+			if ready_to_harvest:
+				harvest_plant()
 		
 
 func plant_seed():
@@ -101,18 +102,19 @@ func harvest_plant():
 		next_stage_times.append(randf_range(MIN_GROW_TIME, MAX_GROW_TIME))
 
 func _on_interactive_color_rect_mouse_entered():
-	if !planted_tile && Global.seed > 0:
+	if !Global.evil_mode:
+		if !planted_tile && Global.seed > 0:
+			
+			target_opacity = MAX_OPACITY
+			
+			if Input.is_action_pressed("left_click"):
+				plant_seed()
 		
-		target_opacity = MAX_OPACITY
+		if planted_tile && ready_to_harvest:
+			if Input.is_action_pressed("left_click"):
+				harvest_plant()
 		
-		if Input.is_action_pressed("left_click"):
-			plant_seed()
-	
-	if planted_tile && ready_to_harvest:
-		if Input.is_action_pressed("left_click"):
-			harvest_plant()
-	
-	being_hovered = true
+		being_hovered = true
 
 
 func _on_interactive_color_rect_mouse_exited():
