@@ -23,6 +23,17 @@ const HAPPY_FACE = preload("res://assets/Faces/HappyFace.png")
 
 func _process(delta):
 	
+	if Input.is_action_just_pressed("ui_accept"):
+		if Global.evil_mode:
+			Global.evil_mode = false
+			SignalManager.song_change.emit()
+			evil_toggle_on(false)
+		else:
+			Global.evil_mode = true
+			SignalManager.song_change.emit()
+			evil_toggle_on(true)
+		print("ui_accepting")
+	
 	if Global.blood <= 0.0 && Global.in_plant_scene && ready_for_switch:
 		evil_activity_label.text = "no blood"
 		evil_texture_button.texture_normal = CLICKED_EVIL_FACE
