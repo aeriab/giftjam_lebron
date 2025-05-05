@@ -64,7 +64,6 @@ func current_mouse():
 			mouse = "water"
 		else:
 			mouse = "murder"
-	print(str(mouse) + " my mousy mouse")
 
 
 func _on_arrow_to_shap_pressed() -> void:

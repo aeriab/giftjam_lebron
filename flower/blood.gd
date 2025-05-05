@@ -46,7 +46,10 @@ func _on_interactive_color_rect_mouse_exited():
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		mouse_pressed = true
+		if Global.evil_mode:
+			mouse_pressed = true
+		else:
+			mouse_pressed = false
 		#print("aajehdjkfnj")
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 		mouse_pressed = false
