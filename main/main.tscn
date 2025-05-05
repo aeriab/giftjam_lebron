@@ -1,14 +1,32 @@
-[gd_scene load_steps=21 format=3 uid="uid://cbd5qse08rnon"]
+[gd_scene load_steps=25 format=3 uid="uid://cbd5qse08rnon"]
 
 [ext_resource type="Script" uid="uid://csoxy0k242tvl" path="res://main/camera_2d.gd" id="1_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://cdy6fef102nbh" path="res://plant_minigame.tscn" id="1_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://dohj4615xds12" path="res://UI/ui.tscn" id="2_xwkvk"]
+[ext_resource type="Shader" uid="uid://dekbcjvnde3yh" path="res://UI/vignette.gdshader" id="3_0i4oc"]
 [ext_resource type="Script" uid="uid://bbx7s75li7nm5" path="res://main/cursor_setter.gd" id="3_xwkvk"]
+[ext_resource type="Script" uid="uid://bm4kxccyya0q6" path="res://UI/vignette.gd" id="4_bsumw"]
 [ext_resource type="Texture2D" uid="uid://bv3l5syoqshv6" path="res://assets/Arrow.png" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://bcfydsopsdlh7" path="res://sheep_minigame.tscn" id="4_kfbq2"]
 [ext_resource type="Script" uid="uid://b3ubw8dks0sh6" path="res://main/bind_cursor.gd" id="6_4dugh"]
 [ext_resource type="Texture2D" uid="uid://hk8g8ej57eqj" path="res://assets/dagger.png" id="8_67ri8"]
 [ext_resource type="AudioStream" uid="uid://dscqfo37th3kh" path="res://Audio/sfx/swingSFX/sword-sound-260274.mp3" id="9_grrlh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsumw"]
+shader = ExtResource("3_0i4oc")
+shader_parameter/inner_radius = 0.03
+shader_parameter/outer_radius = 1.0
+shader_parameter/vignette_strength = 0.0
+shader_parameter/dither_strength = 0.1
+shader_parameter/vignette_color = Color(0.862745, 0.235294, 0.235294, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0i4oc"]
+shader = ExtResource("3_0i4oc")
+shader_parameter/inner_radius = 0.03
+shader_parameter/outer_radius = 1.0
+shader_parameter/vignette_strength = 0.0
+shader_parameter/dither_strength = 0.1
+shader_parameter/vignette_color = Color(0.862745, 0.235294, 0.235294, 1)
 
 [sub_resource type="Animation" id="Animation_grrlh"]
 length = 0.001
@@ -206,6 +224,44 @@ zoom = Vector2(5, 5)
 script = ExtResource("1_3wy1v")
 
 [node name="UI" parent="Camera2D" instance=ExtResource("2_xwkvk")]
+
+[node name="VignetteGarden" type="ColorRect" parent="Camera2D"]
+top_level = true
+material = SubResource("ShaderMaterial_bsumw")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -691.0
+offset_top = -389.0
+offset_right = -461.0
+offset_bottom = -259.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.27451, 0.27451, 1)
+script = ExtResource("4_bsumw")
+mat = SubResource("ShaderMaterial_bsumw")
+
+[node name="VignetteShap" type="ColorRect" parent="Camera2D"]
+top_level = true
+material = SubResource("ShaderMaterial_0i4oc")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -421.0
+offset_top = -389.0
+offset_right = -186.0
+offset_bottom = -259.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.27451, 0.27451, 1)
+script = ExtResource("4_bsumw")
+mat = SubResource("ShaderMaterial_0i4oc")
 
 [node name="PlantMinigame" parent="." instance=ExtResource("1_pjrb6")]
 
