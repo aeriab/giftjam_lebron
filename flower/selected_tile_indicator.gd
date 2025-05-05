@@ -31,7 +31,6 @@ func _process(delta):
 
 
 func _on_interactive_color_rect_mouse_entered():
-	print("mouseentered")
 	SignalManager.mouseover.emit(emitEvententer)
 	being_hovered = true
 
