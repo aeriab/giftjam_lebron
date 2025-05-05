@@ -21,6 +21,8 @@ GOOD_COLOR = Color(0.595494, 0.973559, 0.570214, 1)
 EVIL_COLOR = Color(1, 0.400523, 0.391419, 1)
 GOOD_SHADOW_COLOR = Color(0, 0, 0, 0)
 FEEDING_SEED_AMOUNT = 5
+FADE_IN_OPACITY = 1.0
+FADE_OUT_OPACITY = 0.2
 
 [node name="Seeds" type="Node2D" parent="."]
 position = Vector2(-96, -48)

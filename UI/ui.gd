@@ -11,6 +11,9 @@ extends Control
 
 @export var FEEDING_SEED_AMOUNT: int
 
+@export var FADE_IN_OPACITY: float
+@export var FADE_OUT_OPACITY: float
+
 var ready_for_switch: bool = true
 
 const EVIL_FACE = preload("res://assets/Faces/EvilFace.png")
@@ -147,16 +150,16 @@ func switchActivityLabel():
 
 func evil_toggle_on(is_on : bool):
 	if !is_on:
-		evil_texture_button.modulate.a = 0.1
-		evil_activity_label.modulate.a = 0.1
+		evil_texture_button.modulate.a = FADE_OUT_OPACITY
+		evil_activity_label.modulate.a = FADE_OUT_OPACITY
 		
-		good_texture_button.modulate.a = 1.0
-		good_activity_label.modulate.a = 1.0
+		good_texture_button.modulate.a = FADE_IN_OPACITY
+		good_activity_label.modulate.a = FADE_IN_OPACITY
 	else:
-		evil_texture_button.modulate.a = 1.0
-		evil_activity_label.modulate.a = 1.0
+		evil_texture_button.modulate.a = FADE_IN_OPACITY
+		evil_activity_label.modulate.a = FADE_IN_OPACITY
 		
-		good_texture_button.modulate.a = 0.1
-		good_activity_label.modulate.a = 0.1
+		good_texture_button.modulate.a = FADE_OUT_OPACITY
+		good_activity_label.modulate.a = FADE_OUT_OPACITY
 	
 	
