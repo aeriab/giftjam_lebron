@@ -52,3 +52,25 @@ vertical_alignment = 1
 z_index = 1
 position = Vector2(0, -1)
 texture = ExtResource("2_e6gg6")
+
+[node name="EvilButton" type="CheckButton" parent="Blood"]
+visibility_layer = 1023
+z_index = 1
+offset_left = -1.0
+offset_top = 71.0
+offset_right = 43.0
+offset_bottom = 95.0
+scale = Vector2(0.330506, 0.330506)
+
+[node name="EvilLabel" type="Label" parent="Blood"]
+visibility_layer = 1023
+z_index = 1
+offset_left = -13.0
+offset_top = 59.0
+offset_right = 930.0
+offset_bottom = 333.0
+scale = Vector2(0.0437522, 0.0437522)
+theme_override_font_sizes/font_size = 201
+text = "evil mode"
+
+[connection signal="toggled" from="Blood/EvilButton" to="." method="_on_evil_button_toggled"]

@@ -33,3 +33,7 @@ func minusSeed():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_evil_button_toggled(toggled_on):
+	Global.evil_mode = toggled_on
+	SignalManager.song_change.emit()

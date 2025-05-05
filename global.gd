@@ -3,6 +3,8 @@ extends Node
 var blood: int = 0
 var seed: int = 3
 
+var evil_mode: bool = false
+
 func color_distance(color1: Color, color2: Color) -> float:
 	# Calculate the Euclidean distance between the two colors in RGB space.
 	var r_diff = color1.r - color2.r

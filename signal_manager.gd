@@ -9,4 +9,6 @@ signal cameraPanStart()
 signal cameraPanFinished()
 signal populate_sheep(coordinates : Vector2)
 
+signal song_change()
+
 signal mouseover(str)

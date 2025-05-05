@@ -154,11 +154,11 @@ lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_524gf")
 
 [connection signal="gui_input" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_gui_input"]
-[connection signal="gui_input" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_gui_input"]
 [connection signal="gui_input" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_gui_input"]
+[connection signal="gui_input" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_gui_input"]
 [connection signal="mouse_entered" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_mouse_entered"]
-[connection signal="mouse_entered" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_mouse_entered"]
 [connection signal="mouse_entered" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_mouse_entered"]
+[connection signal="mouse_entered" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_mouse_entered"]
 [connection signal="mouse_exited" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_mouse_exited"]
-[connection signal="mouse_exited" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_mouse_exited"]
 [connection signal="mouse_exited" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_mouse_exited"]
+[connection signal="mouse_exited" from="interactive_color_rect" to="mousoverSelect" method="_on_interactive_color_rect_mouse_exited"]
