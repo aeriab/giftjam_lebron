@@ -121,11 +121,14 @@ func _on_mouse_exited():
 # SEES MOUSE CLICKS TO ALLOW DEATH
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and mouse_inside:
-			if state!=States.DEATH:
+		if state!=States.DEATH:
+			if Global.evil_mode:
 				set_state("DEATH")
+			else:
+				SignalManager.populate_sheep.emit(self.global_position)
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and mouse_inside:
-			if state!=States.DEATH and state!=States.POPULATE and Global.seed > 0:
-				set_state("POPULATE")
+		if state!=States.DEATH and state!=States.POPULATE and Global.seed > 0:
+			set_state("POPULATE")
 
 func _on_idle_timeout():
 	set_state("WALK")

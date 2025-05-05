@@ -16,24 +16,24 @@ func _ready() -> void:
 func sheepBirth(coordinates):
 	var new_shap = shap.instantiate()
 	
+	# Add to scene tree
+	$ShapHolder.add_child(new_shap)
+	
 	# Place it one of 4 random locations around the initial shap
 	if randi_range(0,1)==0:
 		if randi_range(0,1)==1:
-			new_shap.position.x = coordinates.x
-			new_shap.position.y = coordinates.y - 10
+			new_shap.global_position.x = coordinates.x
+			new_shap.global_position.y = coordinates.y
 		else:
-			new_shap.position.x = coordinates.x
-			new_shap.position.y = coordinates.y + 10
+			new_shap.global_position.x = coordinates.x
+			new_shap.global_position.y = coordinates.y
 	else:
 		if randi_range(0,1)==1:
-			new_shap.position.x = coordinates.x - 10
-			new_shap.position.y = coordinates.y
+			new_shap.global_position.x = coordinates.x
+			new_shap.global_position.y = coordinates.y
 		else:
-			new_shap.position.x = coordinates.x + 10
-			new_shap.position.y = coordinates.y
-	
-	# Add to scene tree
-	$ShapHolder.add_child(new_shap)
+			new_shap.global_position.x = coordinates.x
+			new_shap.global_position.y = coordinates.y
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
