@@ -130,7 +130,7 @@ func _input(event):
 				set_state("DEATH")
 			if !Global.evil_mode:
 				
-				if Global.any_seeds_planted || Global.seed > FEEDING_SEED_AMOUNT:
+				if (Global.any_seeds_planted && Global.seed >= FEEDING_SEED_AMOUNT) || (Global.seed > FEEDING_SEED_AMOUNT):
 					SignalManager.seed_used.emit(FEEDING_SEED_AMOUNT)
 					Global.sheep_left += 1
 					SignalManager.populate_sheep.emit(self.global_position)
