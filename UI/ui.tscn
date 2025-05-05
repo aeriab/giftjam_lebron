@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dohj4615xds12"]
+[gd_scene load_steps=5 format=3 uid="uid://dohj4615xds12"]
 
 [ext_resource type="Texture2D" uid="uid://c8nhbyjcdepui" path="res://assets/WheatSeeds.png" id="1_dajm1"]
 [ext_resource type="Script" uid="uid://b72uiamo8ij7e" path="res://UI/ui.gd" id="1_e6gg6"]
 [ext_resource type="Texture2D" uid="uid://bodyixjvwj0ki" path="res://assets/blood.png" id="2_e6gg6"]
+[ext_resource type="Texture2D" uid="uid://bj4lwtspas2el" path="res://assets/Faces/HappyFace.png" id="4_hat8c"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -53,24 +54,26 @@ z_index = 1
 position = Vector2(0, -1)
 texture = ExtResource("2_e6gg6")
 
-[node name="EvilButton" type="CheckButton" parent="Blood"]
-visibility_layer = 1023
+[node name="TextureButton" type="TextureButton" parent="."]
 z_index = 1
-offset_left = -1.0
-offset_top = 71.0
-offset_right = 43.0
-offset_bottom = 95.0
-scale = Vector2(0.330506, 0.330506)
+layout_mode = 0
+offset_left = -103.0
+offset_top = 29.0
+offset_right = -39.0
+offset_bottom = 93.0
+scale = Vector2(0.450726, 0.450726)
+texture_normal = ExtResource("4_hat8c")
 
-[node name="EvilLabel" type="Label" parent="Blood"]
+[node name="ActivityLabel" type="Label" parent="."]
 visibility_layer = 1023
 z_index = 1
-offset_left = -13.0
-offset_top = 59.0
-offset_right = 930.0
-offset_bottom = 333.0
+layout_mode = 0
+offset_left = -123.0
+offset_top = 22.0
+offset_right = 1600.0
+offset_bottom = 296.0
 scale = Vector2(0.0437522, 0.0437522)
 theme_override_font_sizes/font_size = 201
-text = "evil mode"
-
-[connection signal="toggled" from="Blood/EvilButton" to="." method="_on_evil_button_toggled"]
+text = "[INSERT ACTIVITY]"
+horizontal_alignment = 1
+vertical_alignment = 1
