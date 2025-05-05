@@ -9,16 +9,55 @@ extends Control
 @export var GOOD_SHADOW_COLOR: Color
 @export var EVIL_SHADOW_COLOR: Color
 
+@export var FEEDING_SEED_AMOUNT: int
+
 var ready_for_switch: bool = true
 
+const EVIL_FACE = preload("res://assets/Faces/EvilFace.png")
+const CLICKED_EVIL_FACE = preload("res://assets/Faces/ClickedEvilFace.png")
+const CLICKED_HAPPY_FACE = preload("res://assets/Faces/ClickedHappyFace (1).png")
+const HAPPY_FACE = preload("res://assets/Faces/HappyFace.png")
+
 func _process(delta):
+	
+	if Global.blood <= 0.0 && Global.in_plant_scene && ready_for_switch:
+		evil_activity_label.text = "no blood"
+		evil_texture_button.texture_normal = CLICKED_EVIL_FACE
+	elif Global.blood > 0.0 && Global.in_plant_scene && ready_for_switch:
+		evil_activity_label.text = "BLOOD WATER"
+		evil_texture_button.texture_normal = EVIL_FACE
+	
+	if !Global.in_plant_scene && Global.sheep_left <= 1 && !ready_for_switch:
+		print("MAKING HERE HERERERER")
+		evil_activity_label.text = "need more sheep"
+		evil_texture_button.texture_normal = CLICKED_EVIL_FACE
+	elif !Global.in_plant_scene && Global.sheep_left > 1 && !ready_for_switch:
+		evil_activity_label.text = "MURDER"
+		evil_texture_button.texture_normal = EVIL_FACE
+	
 	if Global.seed < 1 && Global.in_plant_scene && ready_for_switch:
 		good_activity_label.text = "grow seeds"
+		good_texture_button.texture_normal = CLICKED_HAPPY_FACE
 		if Global.any_seeds_ready:
 			good_activity_label.text = "harvest"
 			Global.any_seeds_ready = false
+			good_texture_button.texture_normal = HAPPY_FACE
+	elif Global.seed >= 1 && ready_for_switch:
+		good_activity_label.text = "plant seeds"
+		good_texture_button.texture_normal = HAPPY_FACE
+	
+	var can_feed: bool = (Global.any_seeds_planted && Global.seed >= FEEDING_SEED_AMOUNT) || (Global.seed > FEEDING_SEED_AMOUNT)
+	if !Global.in_plant_scene && !can_feed && !ready_for_switch:
+		good_activity_label.text = "need more seeds"
+		good_texture_button.texture_normal = CLICKED_HAPPY_FACE
+	elif !Global.in_plant_scene && can_feed && !ready_for_switch:
+		good_activity_label.text = "feed sheep"
+		good_texture_button.texture_normal = HAPPY_FACE
 
 func _ready():
+	
+	evil_toggle_on(false)
+	
 	SignalManager.cameraPanFinished.connect(switchActivityLabel)
 	
 	SignalManager.sheep_killed.connect(addBlood)
@@ -56,48 +95,68 @@ func _on_evil_button_toggled(toggled_on):
 @onready var evil_activity_label = $EvilActivityLabel
 
 
-func _on_good_texture_button_pressed():
+func _on_evil_texture_button_pressed():
 	Global.evil_mode = true
 	SignalManager.song_change.emit()
 	
-	if Global.in_plant_scene:
-		evil_activity_label.text = "BLOOD WATER"
-	else:
-		evil_activity_label.text = "MURDER"
-	evil_activity_label.visible = true
-	good_activity_label.visible = false
+	#if Global.in_plant_scene:
+		#evil_activity_label.text = "BLOOD WATER"
+	#else:
+		#evil_activity_label.text = "MURDER"
 	
-	good_texture_button.visible = false
-	evil_texture_button.visible = true
+	evil_toggle_on(true)
+	#evil_activity_label.visible = true
+	#good_activity_label.visible = false
+	
+	#good_texture_button.visible = false
+	#evil_texture_button.visible = true
 
-func _on_evil_texture_button_pressed():
+func _on_good_texture_button_pressed():
 	Global.evil_mode = false
 	SignalManager.song_change.emit()
 	
-	if Global.in_plant_scene:
-		good_activity_label.text = "plant seeds"
-	else:
-		good_activity_label.text = "feed sheep"
-	good_activity_label.visible = true
-	evil_activity_label.visible = false
+	#if Global.in_plant_scene:
+		#good_activity_label.text = "plant seeds"
+	#else:
+		#good_activity_label.text = "feed sheep"
 	
-	good_texture_button.visible = true
-	evil_texture_button.visible = false
+	evil_toggle_on(false)
+	#good_activity_label.visible = true
+	#evil_activity_label.visible = false
+	#
+	#good_texture_button.visible = true
+	#evil_texture_button.visible = false
 
 func switchActivityLabel():
 	
 	if Global.in_plant_scene:
 		ready_for_switch = true
-		evil_activity_label.text = "BLOOD WATER"
+		#evil_activity_label.text = "BLOOD WATER"
 	else:
 		ready_for_switch = false
-		evil_activity_label.text = "MURDER"
+		#evil_activity_label.text = "MURDER"
 	
 	if Global.in_plant_scene:
 		ready_for_switch = true
-		good_activity_label.text = "plant seeds"
+		#good_activity_label.text = "plant seeds"
 	else:
 		ready_for_switch = false
-		good_activity_label.text = "feed sheep"
+		#good_activity_label.text = "feed sheep"
 	
 	pass
+
+func evil_toggle_on(is_on : bool):
+	if !is_on:
+		evil_texture_button.modulate.a = 0.1
+		evil_activity_label.modulate.a = 0.1
+		
+		good_texture_button.modulate.a = 1.0
+		good_activity_label.modulate.a = 1.0
+	else:
+		evil_texture_button.modulate.a = 1.0
+		evil_activity_label.modulate.a = 1.0
+		
+		good_texture_button.modulate.a = 0.1
+		good_activity_label.modulate.a = 0.1
+	
+	

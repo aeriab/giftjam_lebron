@@ -20,6 +20,7 @@ script = ExtResource("1_e6gg6")
 GOOD_COLOR = Color(0.595494, 0.973559, 0.570214, 1)
 EVIL_COLOR = Color(1, 0.400523, 0.391419, 1)
 GOOD_SHADOW_COLOR = Color(0, 0, 0, 0)
+FEEDING_SEED_AMOUNT = 5
 
 [node name="Seeds" type="Node2D" parent="."]
 position = Vector2(-96, -48)
@@ -76,7 +77,6 @@ texture_hover = ExtResource("5_3sbvi")
 flip_h = true
 
 [node name="EvilTextureButton" type="TextureButton" parent="."]
-visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 72.0
@@ -107,7 +107,6 @@ vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="EvilActivityLabel" type="Label" parent="."]
-visible = false
 modulate = Color(0.999966, 0.186059, 0.20766, 1)
 visibility_layer = 1023
 z_index = 1
@@ -116,7 +115,6 @@ offset_top = 16.0
 offset_right = 1236.0
 offset_bottom = 567.0
 scale = Vector2(0.0437522, 0.0437522)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 20
 theme_override_constants/shadow_offset_y = 20
 theme_override_font_sizes/font_size = 201
