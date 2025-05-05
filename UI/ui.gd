@@ -26,7 +26,7 @@ func addSeed(num : int):
 
 func minusSeed(num : int):
 	Global.seed -= num
-	print("decreasing seed by: " + str(num))
+	#print("decreasing seed by: " + str(num))
 	seeds_number.text = str(int(Global.seed))
 
 

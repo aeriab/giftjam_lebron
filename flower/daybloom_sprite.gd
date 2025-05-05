@@ -9,8 +9,8 @@ extends Sprite2D
 @export var FADE_IN_SPEED: float
 @export var FADE_OUT_SPEED: float
 
-@export var MIN_GROW_TIME: float
-@export var MAX_GROW_TIME: float
+var min_grow_time: float = 3.0
+var max_grow_time: float = 6.0
 
 @export var NORMAL_COLOR: Color
 @export var NO_SEEDS_COLOR: Color
@@ -31,13 +31,29 @@ var ready_to_harvest: bool = false
 
 @onready var target_color: Color = NORMAL_COLOR
 @onready var current_color: Color = NORMAL_COLOR
+@onready var blood: Sprite2D = $"../blood"
+
+@export var GROWTH_MIN: float
+@export var GROWTH_MAX: float
+
+@export var BLOOD_GROWTH_MIN: float
+@export var BLOOD_GROWTH_MAX: float
 
 func _ready():
 	next_stage_times = []
 	for i in range(7):
-		next_stage_times.append(randf_range(MIN_GROW_TIME, MAX_GROW_TIME))
+		next_stage_times.append(randf_range(min_grow_time, max_grow_time))
 
 func _process(delta):
+	#print("blood opac: " + str(blood.current_opacity))
+	if blood.current_opacity >= 0.1:
+		print("MAKING HERE")
+		min_grow_time = BLOOD_GROWTH_MIN
+		max_grow_time = BLOOD_GROWTH_MAX
+	else:
+		min_grow_time = GROWTH_MIN
+		max_grow_time = GROWTH_MAX
+	
 	if !planted_tile:
 		if being_hovered:
 			current_opacity = lerpf(current_opacity,target_opacity,FADE_IN_SPEED * delta)
@@ -101,11 +117,10 @@ func harvest_plant():
 	ready_to_harvest = false
 	next_stage_times = []
 	for i in range(7):
-		next_stage_times.append(randf_range(MIN_GROW_TIME, MAX_GROW_TIME))
+		next_stage_times.append(randf_range(min_grow_time, max_grow_time))
 
 func _on_interactive_color_rect_mouse_entered():
 	if !Global.evil_mode:
-		print("seed: " + str(Global.seed))
 		if !planted_tile && Global.seed > 0:
 			
 			target_opacity = MAX_OPACITY
