@@ -3,6 +3,8 @@ extends Node
 var blood: int = 0
 var seed: int = 3
 
+var sheep_left: int = 9
+
 var evil_mode: bool = false
 var in_plant_scene: bool = true
 

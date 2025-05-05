@@ -6,7 +6,7 @@ extends Node2D
 func _ready() -> void:
 	SignalManager.populate_sheep.connect(sheepBirth)
 	# SPAWNS 10 SHAPS INITIALLY
-	for i in range(0,10):
+	for i in range(0,Global.sheep_left):
 		var new_shap = shap.instantiate()
 		new_shap.global_position.x = (randf_range($"Pen Markers/topleft".position.x,$"Pen Markers/topright".position.x))
 		new_shap.global_position.y = (randf_range($"Pen Markers/topleft".position.y,$"Pen Markers/bottomleft".position.y))
