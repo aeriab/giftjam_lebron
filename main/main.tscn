@@ -215,7 +215,7 @@ position = Vector2(272, 0)
 [node name="CursorSetter" type="Node" parent="."]
 script = ExtResource("3_xwkvk")
 
-[node name="ArrowToMurder" type="TextureButton" parent="."]
+[node name="ArrowToShap" type="TextureButton" parent="."]
 modulate = Color(1, 1, 1, 0.380392)
 offset_left = 96.0
 offset_top = -16.0
@@ -224,7 +224,7 @@ offset_bottom = 16.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("4_c651c")
 
-[node name="ArrowToEvilPlants" type="TextureButton" parent="."]
+[node name="ArrowToPlants" type="TextureButton" parent="."]
 modulate = Color(1, 1, 1, 0.380392)
 offset_left = 176.0
 offset_top = -16.0
@@ -277,7 +277,7 @@ process_material = SubResource("ParticleProcessMaterial_grrlh")
 [node name="slash" type="AudioStreamPlayer2D" parent="BindCursor"]
 stream = ExtResource("9_grrlh")
 
-[connection signal="pressed" from="ArrowToMurder" to="Camera2D" method="_on_arrow_to_murder_pressed"]
-[connection signal="pressed" from="ArrowToMurder" to="BindCursor" method="_on_arrow_to_murder_pressed"]
-[connection signal="pressed" from="ArrowToEvilPlants" to="Camera2D" method="_on_arrow_to_evil_plants_pressed"]
-[connection signal="pressed" from="ArrowToEvilPlants" to="BindCursor" method="_on_arrow_to_evil_plants_pressed"]
+[connection signal="pressed" from="ArrowToShap" to="Camera2D" method="_on_arrow_to_murder_pressed"]
+[connection signal="pressed" from="ArrowToShap" to="BindCursor" method="_on_arrow_to_shap_pressed"]
+[connection signal="pressed" from="ArrowToPlants" to="Camera2D" method="_on_arrow_to_evil_plants_pressed"]
+[connection signal="pressed" from="ArrowToPlants" to="BindCursor" method="_on_arrow_to_plants_pressed"]

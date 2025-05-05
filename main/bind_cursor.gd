@@ -10,17 +10,11 @@ extends Marker2D
 @onready var dagger = preload("res://assets/dagger.png")
 
 var mouse = "dflt"
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	SignalManager.mouseover.connect(mousesetter)
-
-
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position =  get_global_mouse_position()
+	current_mouse()
 	match mouse:
 		"dflt":
 			sprite.texture = null
@@ -40,6 +34,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event):
+	current_mouse()
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			match mouse:
@@ -56,17 +51,26 @@ func _input(event):
 				"water":
 					anim.play("RESET")
 					pass
-	
-
-func mousesetter(str):
-	print(str)
-	mouse = str
 
 
-func _on_arrow_to_murder_pressed() -> void:
+func current_mouse():
+	if !Global.evil_mode:
+		if Global.in_plant_scene:
+			mouse = "plant"
+		else:
+			mouse = "feed"
+	else:
+		if Global.in_plant_scene:
+			mouse = "water"
+		else:
+			mouse = "murder"
+	print(str(mouse) + " my mousy mouse")
+
+
+func _on_arrow_to_shap_pressed() -> void:
+	Global.in_plant_scene = false
 	anim.play("dagger")
-	mouse = "murder"
 
 
-func _on_arrow_to_evil_plants_pressed() -> void:
-	mouse = "dflt"
+func _on_arrow_to_plants_pressed() -> void:
+	Global.in_plant_scene = true

@@ -4,6 +4,7 @@ var blood: int = 0
 var seed: int = 3
 
 var evil_mode: bool = false
+var in_plant_scene: bool = true
 
 func color_distance(color1: Color, color2: Color) -> float:
 	# Calculate the Euclidean distance between the two colors in RGB space.
