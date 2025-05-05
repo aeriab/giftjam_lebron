@@ -145,7 +145,8 @@ func _on_hitbox_body_entered(body: Node2D):
 
 func _on_hitbox_area_entered(area: Area2D):
 	if area.name=="scarefield" and state!=States.DEATH and state!=States.POPULATE:
-		set_state("FLEE")
+		if Global.evil_mode:
+			set_state("FLEE")
 
 func _on_hitbox_area_exited(area: Area2D):
 	if area.name=="scarefield" and state!=States.DEATH and state!=States.POPULATE:
