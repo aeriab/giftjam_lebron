@@ -48,6 +48,7 @@ func _process(delta):
 	elif Global.seed >= 1 && ready_for_switch:
 		good_activity_label.text = "plant seeds"
 		good_texture_button.texture_normal = HAPPY_FACE
+		SignalManager.mouseover.emit("seed")
 	
 	var can_feed: bool = (Global.any_seeds_planted && Global.seed >= FEEDING_SEED_AMOUNT) || (Global.seed > FEEDING_SEED_AMOUNT)
 	if !Global.in_plant_scene && !can_feed && !ready_for_switch:
