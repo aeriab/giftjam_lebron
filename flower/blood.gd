@@ -18,7 +18,9 @@ func _ready():
 
 func _process(delta):
 	if being_hovered:
-		if mouse_pressed:
+		if mouse_pressed && Global.blood > 0.0:
+			Global.blood -= delta * 0.2
+			#print(Global.blood)
 			target_opacity = MAX_OPACITY
 			$"../GPUParticles2D".emitting = true
 			current_opacity = lerpf(current_opacity,target_opacity,FADE_IN_SPEED * delta)
@@ -46,7 +48,7 @@ func _on_interactive_color_rect_mouse_exited():
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if Global.evil_mode:
+		if Global.evil_mode && Global.blood > 0.0:
 			mouse_pressed = true
 		else:
 			mouse_pressed = false

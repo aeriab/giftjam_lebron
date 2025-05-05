@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dohj4615xds12"]
+[gd_scene load_steps=9 format=3 uid="uid://dohj4615xds12"]
 
 [ext_resource type="Texture2D" uid="uid://c8nhbyjcdepui" path="res://assets/WheatSeeds.png" id="1_dajm1"]
 [ext_resource type="Script" uid="uid://b72uiamo8ij7e" path="res://UI/ui.gd" id="1_e6gg6"]
 [ext_resource type="Texture2D" uid="uid://bodyixjvwj0ki" path="res://assets/blood.png" id="2_e6gg6"]
+[ext_resource type="Script" uid="uid://bed8j2tw0fi8n" path="res://UI/blood_meter_label.gd" id="3_cbfhl"]
 [ext_resource type="Texture2D" uid="uid://bj4lwtspas2el" path="res://assets/Faces/HappyFace.png" id="4_hat8c"]
 [ext_resource type="Texture2D" uid="uid://x3b11fhwweog" path="res://assets/Faces/ClickedHappyFace (1).png" id="5_3sbvi"]
 [ext_resource type="Texture2D" uid="uid://bnpdqjfo4l76a" path="res://assets/Faces/EvilFace.png" id="5_nm1m0"]
@@ -54,6 +55,7 @@ theme_override_font_sizes/font_size = 341
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("3_cbfhl")
 
 [node name="Blood" type="Sprite2D" parent="Blood"]
 z_index = 1
