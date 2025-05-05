@@ -9,9 +9,6 @@ extends Sprite2D
 @export var FADE_IN_SPEED: float
 @export var FADE_OUT_SPEED: float
 
-var min_grow_time: float = 3.0
-var max_grow_time: float = 6.0
-
 @export var NORMAL_COLOR: Color
 @export var NO_SEEDS_COLOR: Color
 
@@ -36,6 +33,10 @@ var ready_to_harvest: bool = false
 @export var GROWTH_MIN: float
 @export var GROWTH_MAX: float
 
+@onready var min_grow_time: float = GROWTH_MIN
+@onready var max_grow_time: float = GROWTH_MAX
+
+
 @export var BLOOD_GROWTH_MIN: float
 @export var BLOOD_GROWTH_MAX: float
 
@@ -47,12 +48,9 @@ func _ready():
 func _process(delta):
 	#print("blood opac: " + str(blood.current_opacity))
 	if blood.current_opacity >= 0.1:
-		print("MAKING HERE")
-		min_grow_time = BLOOD_GROWTH_MIN
-		max_grow_time = BLOOD_GROWTH_MAX
+		plant_time_ellapsed += delta * (GROWTH_MAX / BLOOD_GROWTH_MAX)
 	else:
-		min_grow_time = GROWTH_MIN
-		max_grow_time = GROWTH_MAX
+		plant_time_ellapsed += delta
 	
 	if !planted_tile:
 		if being_hovered:
