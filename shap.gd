@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var anim = $Sprite/AnimationPlayer
 @onready var hitSFX = $Hit
 
+@export var FEEDING_SEED_AMOUNT: int
+
 # Variables
 var mouse_inside : bool
 var adapt_vector : Vector2
@@ -75,7 +77,7 @@ func set_state(new_phase):
 		velocity = Vector2(0,0)
 		
 		# reduce seeds
-		SignalManager.seed_used.emit()
+		#SignalManager.seed_used.emit()
 		
 		# handle animations
 		anim.play("RESET")
@@ -121,14 +123,19 @@ func _on_mouse_exited():
 # SEES MOUSE CLICKS TO ALLOW DEATH
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and mouse_inside:
-		print(str(Global.sheep_left) + " sheep left")
+		#print(str(Global.sheep_left) + " sheep left")
 		if state!=States.DEATH:
 			if Global.evil_mode && Global.sheep_left > 1:
 				Global.sheep_left -= 1
 				set_state("DEATH")
 			if !Global.evil_mode:
-				Global.sheep_left += 1
-				SignalManager.populate_sheep.emit(self.global_position)
+				
+				if Global.seed > FEEDING_SEED_AMOUNT:
+					SignalManager.seed_used.emit(FEEDING_SEED_AMOUNT)
+					Global.sheep_left += 1
+					SignalManager.populate_sheep.emit(self.global_position)
+					if Global.seed < 1:
+						Global.any_seeds_left = false
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and mouse_inside:
 		if state!=States.DEATH and state!=States.POPULATE and Global.seed > 0:
 			set_state("POPULATE")

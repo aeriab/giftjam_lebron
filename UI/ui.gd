@@ -20,12 +20,13 @@ func minusBlood():
 	Global.blood -=1
 	blood_meter.text = str(int(Global.blood))
 
-func addSeed():
-	Global.seed += 1
+func addSeed(num : int):
+	Global.seed += num
 	seeds_number.text = str(int(Global.seed))
 
-func minusSeed():
-	Global.seed -=1
+func minusSeed(num : int):
+	Global.seed -= num
+	print("decreasing seed by: " + str(num))
 	seeds_number.text = str(int(Global.seed))
 
 

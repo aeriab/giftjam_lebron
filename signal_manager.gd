@@ -2,8 +2,8 @@ extends Node
 
 signal sheep_killed()
 signal blood_watered()
-signal seed_used()
-signal seed_gathered()
+signal seed_used(num : int)
+signal seed_gathered(num : int)
 
 signal cameraPanStart()
 signal cameraPanFinished()

@@ -37,4 +37,5 @@ func sheepBirth(coordinates):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print(str(Global.any_seeds_left) + ", there are seeds")
 	pass

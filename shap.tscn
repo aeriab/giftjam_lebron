@@ -210,6 +210,7 @@ stream_3/stream = ExtResource("6_myhmv")
 [node name="Shap" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_6sc2g")
+FEEDING_SEED_AMOUNT = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(10, 10)
