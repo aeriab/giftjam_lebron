@@ -8,6 +8,8 @@ extends Marker2D
 @onready var pointer = preload("res://assets/pointer.png")
 @onready var watercan = preload("res://assets/wateringCan.png")
 @onready var dagger = preload("res://assets/dagger.png")
+@onready var seedsBag = preload("res://assets/CursorSprites/SeedsBag1.png")
+@onready var foodscoop = preload("res://assets/CursorSprites/FoodScoop.png")
 
 var mouse = "dflt"
 
@@ -33,6 +35,12 @@ func _process(delta: float) -> void:
 			sprite.texture = dagger
 			await anim.animation_finished
 			anim.play("dagger")
+		"seed":
+			anim.play("RESET")
+			sprite.texture = seedsBag
+		"feed":
+			anim.play("RESET")
+			sprite.texture = foodscoop
 
 
 func _input(event):
@@ -58,9 +66,10 @@ func _input(event):
 func current_mouse():
 	if !Global.evil_mode:
 		if Global.in_plant_scene:
-			mouse = "plant"
+			mouse = "seed"
 		else:
 			mouse = "feed"
+			pass
 	else:
 		if Global.in_plant_scene:
 			mouse = "water"
