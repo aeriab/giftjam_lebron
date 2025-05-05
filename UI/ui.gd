@@ -51,6 +51,9 @@ func _on_evil_button_toggled(toggled_on):
 @onready var activity_label = $ActivityLabel
 
 func _on_good_texture_button_pressed():
+	Global.evil_mode = true
+	SignalManager.song_change.emit()
+	
 	if Global.in_plant_scene:
 		activity_label.text = "BLOOD WATER"
 	else:
@@ -63,6 +66,9 @@ func _on_good_texture_button_pressed():
 
 
 func _on_evil_texture_button_pressed():
+	Global.evil_mode = false
+	SignalManager.song_change.emit()
+	
 	if Global.in_plant_scene:
 		activity_label.text = "plant seeds"
 	else:
