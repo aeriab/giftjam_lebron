@@ -12,3 +12,6 @@ signal populate_sheep(coordinates : Vector2)
 signal song_change()
 
 signal mouseover(str)
+
+# TODO: make this make a sound
+signal play_harvest_sound()

@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dt7cms1gr4dj4" path="res://Audio/sfx/digSFX/Dig - Track 6.wav" id="11_524gf"]
 [ext_resource type="AudioStream" uid="uid://ctnws0lq1cbd2" path="res://Audio/sfx/digSFX/Dig - Track 7.wav" id="12_ght65"]
 [ext_resource type="AudioStream" uid="uid://cbe4tias207v1" path="res://Audio/sfx/digSFX/Dig - Track 8.wav" id="13_26x3e"]
-[ext_resource type="Texture2D" uid="uid://yqbk11yp8nri" path="res://assets/TeenLotus.png" id="15_imc3s"]
+[ext_resource type="Texture2D" uid="uid://cs85580e52uk2" path="res://assets/TeenLotusNew.png" id="15_imc3s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsrw"]
 shader = ExtResource("1_w8eqt")
@@ -161,7 +161,7 @@ visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_imc3s")
 hframes = 2
-vframes = 2
+vframes = 3
 
 [connection signal="gui_input" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_gui_input"]
 [connection signal="gui_input" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_gui_input"]

@@ -23,7 +23,7 @@ const HAPPY_FACE = preload("res://assets/Faces/HappyFace.png")
 
 func _process(delta):
 	
-	print(Global.evil_mode)
+	#print(Global.evil_mode)
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		if Global.evil_mode:
@@ -34,7 +34,7 @@ func _process(delta):
 			Global.evil_mode = true
 			SignalManager.song_change.emit()
 			evil_toggle_on(true)
-		print("ui_accepting")
+		#print("ui_accepting")
 	
 	if Global.blood <= 0.0 && Global.in_plant_scene && ready_for_switch:
 		evil_activity_label.text = "no blood"

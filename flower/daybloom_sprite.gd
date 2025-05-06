@@ -41,10 +41,12 @@ var ready_to_harvest: bool = false
 @export var BLOOD_GROWTH_MIN: float
 @export var BLOOD_GROWTH_MAX: float
 
+var lotus_time: bool = false
+
 func _ready():
 	next_stage_times = []
 	for i in range(7):
-		next_stage_times.append(randf_range(min_grow_time, max_grow_time))
+		next_stage_times.append(randf_range(min_grow_time * 5, max_grow_time * 5))
 
 func _process(delta):
 	#print("blood opac: " + str(blood.current_opacity))
@@ -71,6 +73,8 @@ func _process(delta):
 			plant_stage_index += 1
 			plant_time_ellapsed = 0
 			frame += 1
+			if lotus_time:
+				teen_lotus.frame += 1
 	
 	current_color = current_color.lerp(target_color, FADE_IN_SPEED * delta)
 	
@@ -98,35 +102,47 @@ func _on_interactive_color_rect_gui_input(event):
 		
 
 func plant_seed():
-	if Global.seed < 5:
+	if Global.seed < 20:
+		lotus_time = false
+		frame = 6
+		teen_lotus.frame = 0
 		visible = true
 		teen_lotus.visible = false
 		next_stage_times = []
 		for i in range(7):
-			next_stage_times.append(randf_range(min_grow_time, max_grow_time))
+			next_stage_times.append(randf_range(min_grow_time * 5, max_grow_time * 5))
 		Global.any_seeds_planted = true
 		digSFX.play()
 		target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
 		planted_tile = true
 		SignalManager.seed_used.emit(1)
 	else:
-		frame = 0
+		lotus_time = true
+		frame = 6
+		teen_lotus.frame = 0
 		visible = false
 		teen_lotus.visible = true
 		next_stage_times = []
-		for i in range(3):
-			next_stage_times.append(randf_range(min_grow_time, max_grow_time))
+		for i in range(4):
+			next_stage_times.append(randf_range(min_grow_time * 25, max_grow_time * 25))
+		print(next_stage_times)
 		Global.any_seeds_planted = true
 		digSFX.play()
 		target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
 		planted_tile = true
-		SignalManager.seed_used.emit(5)
+		SignalManager.seed_used.emit(20)
 
 func harvest_plant():
+	SignalManager.play_harvest_sound.emit()
+	teen_lotus.visible = false
 	Global.any_seeds_planted = false
 	cpu_particles_2d.emitting = true
-	SignalManager.seed_gathered.emit(2)
+	if lotus_time:
+		SignalManager.seed_gathered.emit(30)
+	else:
+		SignalManager.seed_gathered.emit(2)
 	frame = 6
+	teen_lotus.frame = 0
 	target_opacity = 0.0
 	planted_tile = false
 	time_ellapsed = 0.0
@@ -135,7 +151,7 @@ func harvest_plant():
 	ready_to_harvest = false
 	next_stage_times = []
 	for i in range(7):
-		next_stage_times.append(randf_range(min_grow_time, max_grow_time))
+		next_stage_times.append(randf_range(min_grow_time * 5, max_grow_time * 5))
 
 func _on_interactive_color_rect_mouse_entered():
 	if !Global.evil_mode:
