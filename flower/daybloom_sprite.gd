@@ -91,7 +91,7 @@ func _on_interactive_color_rect_gui_input(event):
 		
 		if !Global.evil_mode:
 			if !planted_tile:
-				if Global.seed > 0:
+				if Global.seeds_num > 0:
 					plant_seed()
 				else:
 					target_color = NO_SEEDS_COLOR
@@ -102,7 +102,7 @@ func _on_interactive_color_rect_gui_input(event):
 		
 
 func plant_seed():
-	if Global.seed < 20:
+	if Global.seeds_num < 20:
 		lotus_time = false
 		frame = 6
 		teen_lotus.frame = 0
@@ -157,7 +157,7 @@ func harvest_plant():
 
 func _on_interactive_color_rect_mouse_entered():
 	if !Global.evil_mode:
-		if !planted_tile && Global.seed > 0:
+		if !planted_tile && Global.seeds_num > 0:
 			
 			target_opacity = MAX_OPACITY
 			

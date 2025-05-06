@@ -51,19 +51,19 @@ func _process(delta):
 		evil_activity_label.text = "MURDER"
 		evil_texture_button.texture_normal = EVIL_FACE
 	
-	if Global.seed < 1 && Global.in_plant_scene && ready_for_switch:
+	if Global.seeds_num < 1 && Global.in_plant_scene && ready_for_switch:
 		good_activity_label.text = "grow seeds"
 		good_texture_button.texture_normal = CLICKED_HAPPY_FACE
 		if Global.any_seeds_ready:
 			good_activity_label.text = "harvest"
 			Global.any_seeds_ready = false
 			good_texture_button.texture_normal = HAPPY_FACE
-	elif Global.seed >= 1 && ready_for_switch:
+	elif Global.seeds_num >= 1 && ready_for_switch:
 		good_activity_label.text = "plant seeds"
 		good_texture_button.texture_normal = HAPPY_FACE
 		SignalManager.mouseover.emit("seed")
 	
-	var can_feed: bool = (Global.any_seeds_planted && Global.seed >= FEEDING_SEED_AMOUNT) || (Global.seed > FEEDING_SEED_AMOUNT)
+	var can_feed: bool = (Global.any_seeds_planted && Global.seeds_num >= FEEDING_SEED_AMOUNT) || (Global.seeds_num > FEEDING_SEED_AMOUNT)
 	if !Global.in_plant_scene && !can_feed && !ready_for_switch:
 		good_activity_label.text = "need more seeds"
 		good_texture_button.texture_normal = CLICKED_HAPPY_FACE
@@ -82,7 +82,7 @@ func _ready():
 	SignalManager.seed_gathered.connect(addSeed)
 	SignalManager.seed_used.connect(minusSeed)
 	blood_meter.text = str(int(Global.blood))
-	seeds_number.text = str(int(Global.seed))
+	seeds_number.text = str(int(Global.seeds_num))
 
 func addBlood():
 	Global.blood += 1
@@ -93,13 +93,13 @@ func minusBlood():
 	blood_meter.text = str(int(Global.blood))
 
 func addSeed(num : int):
-	Global.seed += num
-	seeds_number.text = str(int(Global.seed))
+	Global.seeds_num += num
+	seeds_number.text = str(int(Global.seeds_num))
 
 func minusSeed(num : int):
-	Global.seed -= num
+	Global.seeds_num -= num
 	#print("decreasing seed by: " + str(num))
-	seeds_number.text = str(int(Global.seed))
+	seeds_number.text = str(int(Global.seeds_num))
 
 
 func _on_evil_button_toggled(toggled_on):
