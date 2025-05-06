@@ -133,7 +133,9 @@ func plant_seed():
 		SignalManager.seed_used.emit(20)
 
 func harvest_plant():
-	SignalManager.play_harvest_sound.emit()
+	$"../harvestSFX".pitch_scale = randf_range(2, 3)
+	$"../harvestSFX".play()
+	#SignalManager.play_harvest_sound.emit()
 	teen_lotus.visible = false
 	Global.any_seeds_planted = false
 	cpu_particles_2d.emitting = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c62ajorn8mdqk"]
+[gd_scene load_steps=28 format=3 uid="uid://c62ajorn8mdqk"]
 
 [ext_resource type="Shader" uid="uid://kx8qfv78fnjh" path="res://flower/daybloom_scene.gdshader" id="1_w8eqt"]
 [ext_resource type="Texture2D" uid="uid://cu4ebcrn6uqan" path="res://assets/Dirt(1) (4).png" id="2_q1rdw"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://ctnws0lq1cbd2" path="res://Audio/sfx/digSFX/Dig - Track 7.wav" id="12_ght65"]
 [ext_resource type="AudioStream" uid="uid://cbe4tias207v1" path="res://Audio/sfx/digSFX/Dig - Track 8.wav" id="13_26x3e"]
 [ext_resource type="Texture2D" uid="uid://cs85580e52uk2" path="res://assets/TeenLotusNew.png" id="15_imc3s"]
+[ext_resource type="AudioStream" uid="uid://pi37so7of87s" path="res://Audio/sfx/086374_shaken-bush-40116.mp3" id="16_1de2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsrw"]
 shader = ExtResource("1_w8eqt")
@@ -162,6 +163,12 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_imc3s")
 hframes = 2
 vframes = 3
+
+[node name="harvestSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_1de2x")
+volume_db = 1.0
+pitch_scale = 2.57
+bus = &"SFX"
 
 [connection signal="gui_input" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_gui_input"]
 [connection signal="gui_input" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_gui_input"]
