@@ -1,5 +1,6 @@
 extends Sprite2D
 
+@onready var teen_lotus = $"../TeenLotus"
 
 @onready var cpu_particles_2d = $"../CPUParticles2D"
 @onready var digSFX = $"../digSFX"
@@ -97,11 +98,29 @@ func _on_interactive_color_rect_gui_input(event):
 		
 
 func plant_seed():
-	Global.any_seeds_planted = true
-	digSFX.play()
-	target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
-	planted_tile = true
-	SignalManager.seed_used.emit(1)
+	if Global.seed < 5:
+		visible = true
+		teen_lotus.visible = false
+		next_stage_times = []
+		for i in range(7):
+			next_stage_times.append(randf_range(min_grow_time, max_grow_time))
+		Global.any_seeds_planted = true
+		digSFX.play()
+		target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
+		planted_tile = true
+		SignalManager.seed_used.emit(1)
+	else:
+		frame = 0
+		visible = false
+		teen_lotus.visible = true
+		next_stage_times = []
+		for i in range(3):
+			next_stage_times.append(randf_range(min_grow_time, max_grow_time))
+		Global.any_seeds_planted = true
+		digSFX.play()
+		target_opacity = MAX_OPACITY + randf_range(0.1, 0.2)
+		planted_tile = true
+		SignalManager.seed_used.emit(5)
 
 func harvest_plant():
 	Global.any_seeds_planted = false
