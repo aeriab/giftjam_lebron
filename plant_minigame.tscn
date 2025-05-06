@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://cdy6fef102nbh"]
+[gd_scene load_steps=5 format=4 uid="uid://cdy6fef102nbh"]
 
 [ext_resource type="Texture2D" uid="uid://cu4ebcrn6uqan" path="res://assets/Dirt(1) (4).png" id="1_rvfsd"]
 [ext_resource type="Script" uid="uid://bfmgcnb3uynld" path="res://plant_tile_map_layer.gd" id="2_y7wem"]
-[ext_resource type="AudioStream" uid="uid://byptqeu5r216y" path="res://Audio/GARDEN.wav" id="3_kmyxg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmyxg"]
 texture = ExtResource("1_rvfsd")
@@ -49,8 +48,3 @@ tile_set = SubResource("TileSet_kmyxg")
 position = Vector2(-56, -56)
 tile_set = SubResource("TileSet_kmyxg")
 script = ExtResource("2_y7wem")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_kmyxg")
-autoplay = true
-max_distance = 200.0

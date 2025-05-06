@@ -22,7 +22,6 @@ const CLICKED_HAPPY_FACE = preload("res://assets/Faces/ClickedHappyFace (1).png"
 const HAPPY_FACE = preload("res://assets/Faces/HappyFace.png")
 
 func _process(delta):
-	
 	if Input.is_action_just_pressed("ui_accept"):
 		if Global.evil_mode:
 			Global.evil_mode = false
