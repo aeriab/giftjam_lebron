@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cbd5qse08rnon"]
+[gd_scene load_steps=24 format=3 uid="uid://cbd5qse08rnon"]
 
 [ext_resource type="Script" uid="uid://csoxy0k242tvl" path="res://main/camera_2d.gd" id="1_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://cdy6fef102nbh" path="res://plant_minigame.tscn" id="1_pjrb6"]
@@ -14,19 +14,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bsumw"]
 shader = ExtResource("3_0i4oc")
-shader_parameter/inner_radius = 0.03
+shader_parameter/inner_radius = 0.3
 shader_parameter/outer_radius = 1.0
 shader_parameter/vignette_strength = 0.0
-shader_parameter/dither_strength = 0.1
-shader_parameter/vignette_color = Color(0.862745, 0.235294, 0.235294, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0i4oc"]
-shader = ExtResource("3_0i4oc")
-shader_parameter/inner_radius = 0.03
-shader_parameter/outer_radius = 1.0
-shader_parameter/vignette_strength = 0.0
-shader_parameter/dither_strength = 0.1
-shader_parameter/vignette_color = Color(0.862745, 0.235294, 0.235294, 1)
+shader_parameter/dither_strength = 0.03
+shader_parameter/vignette_color = Color(0.530743, 0.110124, 0.116526, 0.392157)
 
 [sub_resource type="Animation" id="Animation_grrlh"]
 length = 0.001
@@ -233,35 +225,35 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -691.0
-offset_top = -389.0
-offset_right = -461.0
-offset_bottom = -259.0
+offset_left = -712.0
+offset_top = -413.0
+offset_right = -423.0
+offset_bottom = -235.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 0.27451, 0.27451, 1)
+color = Color(0.443137, 0, 0.0431373, 0)
 script = ExtResource("4_bsumw")
 mat = SubResource("ShaderMaterial_bsumw")
 
-[node name="VignetteShap" type="ColorRect" parent="Camera2D"]
+[node name="VignetteGarden2" type="ColorRect" parent="Camera2D"]
 top_level = true
-material = SubResource("ShaderMaterial_0i4oc")
+material = SubResource("ShaderMaterial_bsumw")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -421.0
-offset_top = -389.0
-offset_right = -186.0
-offset_bottom = -259.0
+offset_left = -457.0
+offset_top = -413.0
+offset_right = -168.0
+offset_bottom = -235.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 0.27451, 0.27451, 1)
+color = Color(0.443137, 0, 0.0431373, 0)
 script = ExtResource("4_bsumw")
-mat = SubResource("ShaderMaterial_0i4oc")
+mat = SubResource("ShaderMaterial_bsumw")
 
 [node name="PlantMinigame" parent="." instance=ExtResource("1_pjrb6")]
 
