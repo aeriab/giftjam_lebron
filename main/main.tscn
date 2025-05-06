@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cbd5qse08rnon"]
+[gd_scene load_steps=26 format=3 uid="uid://cbd5qse08rnon"]
 
 [ext_resource type="Script" uid="uid://csoxy0k242tvl" path="res://main/camera_2d.gd" id="1_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://cdy6fef102nbh" path="res://plant_minigame.tscn" id="1_pjrb6"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" uid="uid://bm4kxccyya0q6" path="res://UI/vignette.gd" id="4_bsumw"]
 [ext_resource type="Texture2D" uid="uid://bv3l5syoqshv6" path="res://assets/Arrow.png" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://bcfydsopsdlh7" path="res://sheep_minigame.tscn" id="4_kfbq2"]
+[ext_resource type="AudioStream" uid="uid://cbn0w4ge2tix5" path="res://main/backgroundMusicStream.tres" id="5_na0o7"]
 [ext_resource type="Script" uid="uid://b3ubw8dks0sh6" path="res://main/bind_cursor.gd" id="6_4dugh"]
+[ext_resource type="Script" uid="uid://pi2w4vpgq6gr" path="res://main/audio_stream_player_2d.gd" id="7_73k8k"]
 [ext_resource type="Texture2D" uid="uid://hk8g8ej57eqj" path="res://assets/dagger.png" id="8_67ri8"]
 [ext_resource type="AudioStream" uid="uid://dscqfo37th3kh" path="res://Audio/sfx/swingSFX/sword-sound-260274.mp3" id="9_grrlh"]
 
@@ -254,6 +256,11 @@ mouse_filter = 2
 color = Color(0.443137, 0, 0.0431373, 0)
 script = ExtResource("4_bsumw")
 mat = SubResource("ShaderMaterial_bsumw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("5_na0o7")
+autoplay = true
+script = ExtResource("7_73k8k")
 
 [node name="PlantMinigame" parent="." instance=ExtResource("1_pjrb6")]
 
