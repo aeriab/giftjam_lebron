@@ -22,7 +22,6 @@ buses/default_bus_layout=""
 
 SignalManager="*res://signal_manager.gd"
 Global="*res://global.gd"
-AudioManager="*res://Audio/AudioManager.gd"
 
 [display]
 

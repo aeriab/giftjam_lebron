@@ -1,107 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbd5qse08rnon"]
-
-[ext_resource type="PackedScene" uid="uid://dohj4615xds12" path="res://UI/ui.tscn" id="2_rph1e"]
-[ext_resource type="AudioStream" uid="uid://cbn0w4ge2tix5" path="res://main/backgroundMusicStream.tres" id="5_7sotf"]
-[ext_resource type="Script" uid="uid://pi2w4vpgq6gr" path="res://main/audio_stream_player_2d.gd" id="6_qo6qj"]
-
-[sub_resource type="Shader" id="Shader_ghtor"]
-code = "shader_type canvas_item;
-
-uniform float inner_radius = 0.1;
-uniform float outer_radius = 1;
-uniform float vignette_strength = 1.0;
-uniform float dither_strength = 0.03;
-uniform vec4 vignette_color: source_color;
-
-
-void fragment() {
-	float dist = distance(UV, vec2(0.5));
-
-	float vignette = smoothstep(inner_radius, outer_radius, dist) * vignette_strength;
-	float dither = fract(sin(dot(UV, vec2(12.9898, 78.233))) * 43758.5453123) * dither_strength;
-
-	COLOR = vec4(vignette_color.rgb, vignette + dither);
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_73k8k"]
-shader = SubResource("Shader_ghtor")
-shader_parameter/inner_radius = 0.3
-shader_parameter/outer_radius = 1.0
-shader_parameter/vignette_strength = 0.0
-shader_parameter/dither_strength = 0.03
-shader_parameter/vignette_color = Color(0.530743, 0.110124, 0.116526, 0.392157)
-
-[sub_resource type="GDScript" id="GDScript_0je4u"]
-script/source = "extends ColorRect
-
-@export var mat: ShaderMaterial
-var loaded: bool = false
-var tween_duration: float = 0.5 #sec
-
-func _process(delta: float) -> void:
-	if Global.evil_mode and not loaded:
-		loaded = true
-		create_tween().tween_property(
-			mat, \"shader_parameter/vignette_strength\", 1.5, tween_duration
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		#mat.set_shader_parameter(\"vignette_strength\", 1.5)
-	elif not Global.evil_mode and loaded:
-		loaded = false
-		create_tween().tween_property(
-			mat, \"shader_parameter/vignette_strength\", 0.0, tween_duration
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		#mat.set_shader_parameter(\"vignette_strength\", 0)
-		
-"
+[gd_scene format=3 uid="uid://cbd5qse08rnon"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 
-[node name="UI" parent="Camera2D" instance=ExtResource("2_rph1e")]
-
-[node name="VignetteGarden2" type="ColorRect" parent="Camera2D/UI"]
-top_level = true
-material = SubResource("ShaderMaterial_73k8k")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -696.0
-offset_top = -413.0
-offset_right = -440.0
-offset_bottom = -235.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.443137, 0, 0.0431373, 0)
-script = SubResource("GDScript_0je4u")
-mat = SubResource("ShaderMaterial_73k8k")
-
-[node name="VignetteGarden2" type="ColorRect" parent="Camera2D/UI/VignetteGarden2"]
-top_level = true
-material = SubResource("ShaderMaterial_73k8k")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -440.0
-offset_top = -413.0
-offset_right = -184.0
-offset_bottom = -235.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.443137, 0, 0.0431373, 0)
-script = SubResource("GDScript_0je4u")
-mat = SubResource("ShaderMaterial_73k8k")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
-stream = ExtResource("5_7sotf")
-autoplay = true
-script = ExtResource("6_qo6qj")
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.121569, 0.152941, 1, 1)
