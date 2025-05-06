@@ -79,6 +79,7 @@ func set_state(new_phase):
 		# reduce seeds
 		#SignalManager.seed_used.emit()
 		
+		
 		# handle animations
 		anim.play("RESET")
 		
@@ -128,15 +129,14 @@ func _input(event):
 			if Global.evil_mode && Global.sheep_left > 1:
 				Global.sheep_left -= 1
 				set_state("DEATH")
-			if !Global.evil_mode:
-				
+			if !Global.evil_mode and state!=States.POPULATE and Global.seed > 0:
 				if (Global.any_seeds_planted && Global.seed >= FEEDING_SEED_AMOUNT) || (Global.seed > FEEDING_SEED_AMOUNT):
 					SignalManager.seed_used.emit(FEEDING_SEED_AMOUNT)
 					Global.sheep_left += 1
 					SignalManager.populate_sheep.emit(self.global_position)
-	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and mouse_inside:
-		if state!=States.DEATH and state!=States.POPULATE and Global.seed > 0:
-			set_state("POPULATE")
+	#elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and mouse_inside:
+		#if state!=States.DEATH and state!=States.POPULATE and Global.seed > 0:
+			#set_state("POPULATE")
 
 func _on_idle_timeout():
 	set_state("WALK")
