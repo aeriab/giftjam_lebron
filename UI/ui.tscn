@@ -25,7 +25,7 @@ FADE_IN_OPACITY = 1.0
 FADE_OUT_OPACITY = 0.2
 
 [node name="Seeds" type="Node2D" parent="."]
-position = Vector2(-96, -48)
+position = Vector2(78, -48)
 
 [node name="SeedsNumber" type="Label" parent="Seeds"]
 z_index = 1
@@ -45,7 +45,7 @@ z_index = 1
 texture = ExtResource("1_dajm1")
 
 [node name="Blood" type="Node2D" parent="."]
-position = Vector2(-96, -31)
+position = Vector2(78, -31)
 
 [node name="BloodMeter" type="Label" parent="Blood"]
 z_index = 1
