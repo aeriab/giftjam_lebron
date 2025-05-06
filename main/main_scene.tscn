@@ -319,7 +319,6 @@ mat = SubResource("ShaderMaterial_73k8k")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
 stream = ExtResource("5_7sotf")
-autoplay = true
 script = ExtResource("6_qo6qj")
 
 [node name="PlantMinigame" parent="." instance=ExtResource("7_lucsh")]

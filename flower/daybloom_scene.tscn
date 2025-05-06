@@ -148,7 +148,6 @@ color_ramp = SubResource("Gradient_q1rdw")
 
 [node name="digSFX" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_tnepv")
-bus = &"SFX"
 playback_type = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
@@ -168,7 +167,6 @@ vframes = 3
 stream = ExtResource("16_1de2x")
 volume_db = 1.0
 pitch_scale = 2.57
-bus = &"SFX"
 
 [connection signal="gui_input" from="interactive_color_rect" to="DaybloomSprite" method="_on_interactive_color_rect_gui_input"]
 [connection signal="gui_input" from="interactive_color_rect" to="blood" method="_on_interactive_color_rect_gui_input"]
