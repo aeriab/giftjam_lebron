@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	#print ("vol2", vol2)
 	var t = 10 * delta
 	if Global.evil_mode:
-		Syncstream.set_sync_stream_volume(1, lerpf(vol2,5,t))
+		Syncstream.set_sync_stream_volume(1, lerpf(vol2,3,t))
 		Syncstream.set_sync_stream_volume(0, lerpf(vol1,-60,t))
 	else:
 		Syncstream.set_sync_stream_volume(1, lerpf(vol2,-60,t))
